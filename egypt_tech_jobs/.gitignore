@@ -1,19 +1,14 @@
-# dbt
 target/
 dbt_packages/
 logs/
 
-# Sensitive — never push this
 profiles.yml
 
-# Python
 __pycache__/
 *.pyc
 .env
 
-# Jupyter
 .ipynb_checkpoints/
 
-# OS
 .DS_Store
 Thumbs.db

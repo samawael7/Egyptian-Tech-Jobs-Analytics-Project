@@ -1,11 +1,3 @@
--- bridge_job_skills — one row per job-skill combination
--- This is the many-to-many bridge table between dim_job and dim_skills
--- Example: if a job has 5 skills → 5 rows in this table, all with same job_id
--- This is what powers:
---   → Which skills appear most in job postings (COUNT by skill_id)
---   → Which skills co-occur together (self-join on job_id)
---   → Which skills are needed per seniority level (join to dim_job)
-
 WITH raw_skills AS (
     SELECT
         {{ dbt_utils.generate_surrogate_key(['job_url']) }}     AS job_id,
@@ -15,7 +7,6 @@ WITH raw_skills AS (
         AND skills_list != '[]'
 ),
 
--- Same exploding logic as dim_skills
 exploded AS (
     SELECT
         job_id,
@@ -44,8 +35,7 @@ cleaned AS (
         AND LENGTH(TRIM(skill_name)) > 1
 )
 
--- Join to dim_skills to get the skill_id
--- This replaces the raw skill name with the proper foreign key
+
 SELECT
     c.job_id,
     s.skill_id
