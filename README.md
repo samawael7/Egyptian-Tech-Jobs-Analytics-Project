@@ -36,12 +36,15 @@ Wuzzuf.net → Selenium Scraper (CSV, 524 jobs)  ──┘
 
 ## 📁 Project Structure
 Egyptian-Tech-Jobs-Analytics-Project/
+│
 ├── data/
 │   └── cleaned/
-│       └── jobs_combined.csv        # Final cleaned dataset
+│       └── jobs_combined.csv           # Final cleaned dataset
+│
 ├── notebooks/
-│   └── 01_cleaning.ipynb            # Full cleaning pipeline documented
-├── egypt_tech_jobs/                 # dbt project
+│   └── 01_cleaning.ipynb               # Full cleaning pipeline documented
+│
+├── egypt_tech_jobs/                    # dbt project
 │   ├── models/
 │   │   ├── staging/
 │   │   │   ├── sources.yml
@@ -56,8 +59,8 @@ Egyptian-Tech-Jobs-Analytics-Project/
 │   │       └── fact_jobs.sql
 │   ├── dbt_project.yml
 │   └── packages.yml
+│
 └── README.md
-
 ---
 
 ## ⭐ Star Schema
