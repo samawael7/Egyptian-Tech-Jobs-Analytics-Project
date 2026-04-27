@@ -66,45 +66,38 @@ Egyptian-Tech-Jobs-Analytics-Project/
 ```
 
 ## ⭐ Star Schema
-               ┌─────────────────┐
-               │   fact_jobs     │
-               │─────────────────│
-         ┌────►│ job_id (FK)     │◄────┐
-         │     │ company_id (FK) │     │
-         │     │ location_id (FK)│     │
-         │     │ date_id (FK)    │     │
-         │     │ min_experience  │     │
-         │     │ max_experience  │     │
-         │     │ job_type        │     │
-         │     │ work_type       │     │
-         │     │ job_url         │     │
-         └─────┴─────────────────┘─────┘
-         │                             │
-┌──────────┴──────┐           ┌──────────┴──────┐
-│  dim_company    │           │  dim_location   │
-│─────────────────│           │─────────────────│
-│ company_id (PK) │           │ location_id (PK)│
-│ company_name    │           │ city            │
-│ company_type    │           │ country         │
-└─────────────────┘           └─────────────────┘
-┌─────────────────┐           ┌─────────────────┐
-│   dim_job       │           │   dim_date      │
-│─────────────────│           │─────────────────│
-│ job_id (PK)     │           │ date_id (PK)    │
-│ job_title       │           │ full_date       │
-│ job_category    │           │ day/month/year  │
-│ experience_level│           │ quarter         │
-│ scrape_date     │           │ week_of_year    │
-└─────────────────┘           └─────────────────┘
-┌─────────────────┐   ┌─────────────────────┐
-│   dim_skills    │   │  bridge_job_skills  │
-│─────────────────│   │─────────────────────│
-│ skill_id (PK)   │◄──│ job_id (FK)         │
-│ skill_name      │   │ skill_id (FK)        │
-└─────────────────┘   └─────────────────────┘
 
----
+**Central Fact Table**
 
+| fact_jobs | |
+|---|---|
+| fact_id (PK) | surrogate key |
+| job_id (FK) | → dim_job |
+| company_id (FK) | → dim_company |
+| location_id (FK) | → dim_location |
+| date_id (FK) | → dim_date |
+| min_experience | measure |
+| max_experience | measure |
+| job_type | attribute |
+| work_type | attribute |
+| job_url | attribute |
+
+**Dimension Tables**
+
+| dim_job | dim_company | dim_location | dim_date | dim_skills |
+|---|---|---|---|---|
+| job_id (PK) | company_id (PK) | location_id (PK) | date_id (PK) | skill_id (PK) |
+| job_title | company_name | city | full_date | skill_name |
+| job_category | company_type | country | day / month / year | |
+| experience_level | | | quarter / week | |
+| scrape_date | | | day_name | |
+
+**Bridge Table (Many-to-Many)**
+
+| bridge_job_skills | |
+|---|---|
+| job_id (FK) | → fact_jobs |
+| skill_id (FK) | → dim_skills |
 ## 📊 Dataset Stats
 
 | Metric | Value |
