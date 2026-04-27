@@ -35,6 +35,8 @@ Wuzzuf.net → Selenium Scraper (CSV, 524 jobs)  ──┘
 ---
 
 ## 📁 Project Structure
+
+```
 Egyptian-Tech-Jobs-Analytics-Project/
 │
 ├── data/
@@ -61,7 +63,7 @@ Egyptian-Tech-Jobs-Analytics-Project/
 │   └── packages.yml
 │
 └── README.md
----
+```
 
 ## ⭐ Star Schema
                ┌─────────────────┐
