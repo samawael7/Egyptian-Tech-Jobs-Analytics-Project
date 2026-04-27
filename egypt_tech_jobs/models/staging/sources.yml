@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw
+    database: egypt_jobs_db
+    schema: raw
+    tables:
+      - name: raw_jobs
+        description: "Raw jobs data loaded from Wuzzuf CSV"
