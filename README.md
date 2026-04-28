@@ -187,3 +187,8 @@ dbt run
 **Sama Wael Abdou**
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-sama--waell-blue)](https://linkedin.com/in/sama-waell)
 [![GitHub](https://img.shields.io/badge/GitHub-samawael7-black)](https://github.com/samawael7)
+
+**Hanin Hossam**
+
+**Nouran Mohammed**
+
