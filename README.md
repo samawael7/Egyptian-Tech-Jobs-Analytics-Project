@@ -177,7 +177,6 @@ dbt run
 | Market Overview | KPIs, job distribution, company types, cities |
 | Skills Intelligence | Top skills, skills by category, skills by seniority |
 | Hiring Patterns | Company type analysis, top hiring companies |
-| Remote Work Trends | Work type over time, remote by role and company |
 | Career Progression | Seniority funnel, skill roadmap by level |
 
 ---
