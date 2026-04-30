@@ -158,15 +158,7 @@ egypt_tech_jobs:
       schema: staging
       threads: 4
 
-# 4. Install packages
-dbt deps
 
-# 5. Test connection
-dbt debug
-
-# 6. Run all models
-dbt run
-```
 
 ---
 
