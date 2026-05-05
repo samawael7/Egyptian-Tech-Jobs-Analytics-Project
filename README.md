@@ -120,8 +120,8 @@ Performed in `notebooks/01_cleaning.ipynb`:
 - ✅ Extracted `min_experience` and `max_experience` from raw text
 - ✅ Cleaned `skills_list` — removed sentences, noise, empty lists
 - ✅ Normalized `job_category` from 180+ values → 20 clean categories
-- ✅ Added `company_type` (MNC / Corporate / Startup / Government / Unknown)
-- ✅ Added `scrape_date` column
+- ✅ Added `company_type` (MNC / Corporate / Startup / Government / Unknown).
+- ✅ Added `scrape_date` column.
 - ✅ Dropped redundant columns (`experience_raw`, `data_source`)
 
 ---
