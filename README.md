@@ -131,7 +131,7 @@ Performed in `notebooks/01_cleaning.ipynb`:
 ### Prerequisites
 - Snowflake account
 - Python 3.8+
-- dbt-snowflake installed
+- dbt-snowflake installed.
 
 ### Setup
 
