@@ -1,11 +1,11 @@
 {
   "metadata": {
     "keyword": "data analyst",
-    "total_jobs": 15,
-    "pages_scraped": 3,
-    "last_updated": "2026-04-17T07:14:42.179611+00:00",
-    "updated_count": 13,
-    "appended_count": 0,
+    "total_jobs": 30,
+    "pages_scraped": 15,
+    "last_updated": "2026-05-11T13:42:41.467174+00:00",
+    "updated_count": 0,
+    "appended_count": 15,
     "source": "wuzzuf.net"
   },
   "jobs": [
@@ -364,6 +364,325 @@
       "posted_date": "Data Analyst\nEgyptian Company for Cosmetics - Nasr City, Cairo, Egypt\n2 months ago",
       "url": "https://wuzzuf.net/jobs/p/s1kldppidnly-data-analyst-egyptian-company-for-cosmetics-cairo-egypt",
       "scraped_at": "2026-04-17T03:11:07.238198+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "nmah7gqw1zbw-data-analyst-endava-plc-london-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "London, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - London, United Kingdom\n3 days ago",
+      "url": "https://wuzzuf.net/jobs/p/nmah7gqw1zbw-data-analyst-endava-plc-london-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "1hiaiyqjxhpo-data-analyst-endava-plc-manchester-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Manchester, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry",
+        "· Virtual Assistant"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Manchester, United Kingdom\n4 days ago",
+      "url": "https://wuzzuf.net/jobs/p/1hiaiyqjxhpo-data-analyst-endava-plc-manchester-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "dzf4zki95txs-data-analyst-endava-plc-city-of-london-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "City of London, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - City of London, United Kingdom\n4 days ago",
+      "url": "https://wuzzuf.net/jobs/p/dzf4zki95txs-data-analyst-endava-plc-city-of-london-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "uno0hbxig6du-data-analyst-endava-plc-london-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "London, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - London, United Kingdom\n1 day ago",
+      "url": "https://wuzzuf.net/jobs/p/uno0hbxig6du-data-analyst-endava-plc-london-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "ejt2tgvaomgr-data-analyst-endava-plc-london-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "London, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "Data Analysis",
+        "· Computer Science",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - London, United Kingdom\n2 days ago",
+      "url": "https://wuzzuf.net/jobs/p/ejt2tgvaomgr-data-analyst-endava-plc-london-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "jldzj4vfrcw2-data-analyst-endava-plc-city-of-london-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "City of London, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - City of London, United Kingdom\n5 days ago",
+      "url": "https://wuzzuf.net/jobs/p/jldzj4vfrcw2-data-analyst-endava-plc-city-of-london-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "elgkq821vagw-data-analyst-endava-plc-chesterfield-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Chesterfield, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Chesterfield, United Kingdom\n2 days ago",
+      "url": "https://wuzzuf.net/jobs/p/elgkq821vagw-data-analyst-endava-plc-chesterfield-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "8wfgwfjceros-data-analyst-endava-plc-liverpool-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Liverpool, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Liverpool, United Kingdom\n3 days ago",
+      "url": "https://wuzzuf.net/jobs/p/8wfgwfjceros-data-analyst-endava-plc-liverpool-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "rfttrjodond5-data-analyst-endava-plc-liverpool-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Liverpool, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Liverpool, United Kingdom\n5 days ago",
+      "url": "https://wuzzuf.net/jobs/p/rfttrjodond5-data-analyst-endava-plc-liverpool-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "mgqndwhr54kr-data-analyst-endava-plc-manchester-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Manchester, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Manchester, United Kingdom\n5 days ago",
+      "url": "https://wuzzuf.net/jobs/p/mgqndwhr54kr-data-analyst-endava-plc-manchester-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "1rae97jzyxmt-data-analyst-endava-plc-london-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "London, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - London, United Kingdom\n5 days ago",
+      "url": "https://wuzzuf.net/jobs/p/1rae97jzyxmt-data-analyst-endava-plc-london-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "nh9dakuth2ct-data-analyst-endava-plc-cairo-egypt",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Cairo, Egypt",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry",
+        "Data Analytics"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Cairo, Egypt\n8 days ago",
+      "url": "https://wuzzuf.net/jobs/p/nh9dakuth2ct-data-analyst-endava-plc-cairo-egypt",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "iwa8kvlssdjy-data-analyst-majestic-pharmaceuticals-cairo-egypt",
+      "title": "Data Analyst",
+      "company": "Majestic Pharmaceuticals",
+      "location": "New Cairo, Cairo, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3 - 5 Yrs of Exp",
+      "skills": [
+        "Experienced",
+        "· Administration",
+        "Data Analysis",
+        "· Analysis",
+        "· Computer Science"
+      ],
+      "posted_date": "Data Analyst\nMajestic Pharmaceuticals - New Cairo, Cairo, Egypt\n24 hours ago",
+      "url": "https://wuzzuf.net/jobs/p/iwa8kvlssdjy-data-analyst-majestic-pharmaceuticals-cairo-egypt",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "nsutx24azedc-data-analyst-endava-plc-dundee-united-kingdom",
+      "title": "Data Analyst",
+      "company": "Endava PLC",
+      "location": "Dundee, United Kingdom",
+      "job_type": "Part Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Endava PLC -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Analyst/Research",
+        "· Analysis",
+        "· Computer Science",
+        "Data Analysis",
+        "Data Entry"
+      ],
+      "posted_date": "Data Analyst\nEndava PLC - Dundee, United Kingdom\n8 days ago",
+      "url": "https://wuzzuf.net/jobs/p/nsutx24azedc-data-analyst-endava-plc-dundee-united-kingdom",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
+      "keyword": "data analyst"
+    },
+    {
+      "job_id": "z0alecd8tm4h-pmo-data-analyst-resource-scenario-planning-riseup-endemag-for-administrative-skills-development-cairo-egypt",
+      "title": "PMO Data Analyst (Resource & Scenario Planning)",
+      "company": "RISEUP (Endemag for Administrative Skills Development)",
+      "location": "Maadi, Cairo, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3+ Yrs of Exp",
+      "skills": [
+        "PMO Data Analyst (Resource & Scenario Planning)"
+      ],
+      "posted_date": "PMO Data Analyst (Resource & Scenario Planning)\nRISEUP (Endemag for Administrative Skills Development) - Maadi, Cairo, Egypt\n7 days ago",
+      "url": "https://wuzzuf.net/jobs/p/z0alecd8tm4h-pmo-data-analyst-resource-scenario-planning-riseup-endemag-for-administrative-skills-development-cairo-egypt",
+      "scraped_at": "2026-05-11T13:42:23.457705+00:00",
       "keyword": "data analyst"
     }
   ]

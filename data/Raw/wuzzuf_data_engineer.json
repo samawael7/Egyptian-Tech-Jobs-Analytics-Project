@@ -1,10 +1,10 @@
 {
   "metadata": {
     "keyword": "data engineer",
-    "total_jobs": 21,
-    "pages_scraped": 3,
-    "last_updated": "2026-04-17T07:13:37.984773+00:00",
-    "updated_count": 15,
+    "total_jobs": 31,
+    "pages_scraped": 15,
+    "last_updated": "2026-05-11T13:42:19.638150+00:00",
+    "updated_count": 14,
     "appended_count": 0,
     "source": "wuzzuf.net"
   },
@@ -28,9 +28,9 @@
         "· SQL",
         "Relational Databases"
       ],
-      "posted_date": "Middle Data Engineer\nVertex Technologies - Cairo, Egypt\n2 days ago",
+      "posted_date": "Middle Data Engineer\nVertex Technologies - Cairo, Egypt\n26 days ago",
       "url": "https://wuzzuf.net/jobs/p/f3fi6wjnx9o9-middle-data-engineer-vertex-technologies-cairo-egypt",
-      "scraped_at": "2026-04-17T07:12:32.449244+00:00",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
       "keyword": "data engineer"
     },
     {
@@ -52,9 +52,9 @@
         "· Dimensional Modeling",
         "· OLTP/OLAP"
       ],
-      "posted_date": "Senior Data Engineer\nVertex Technologies - Cairo, Egypt\n2 days ago",
+      "posted_date": "Senior Data Engineer\nVertex Technologies - Cairo, Egypt\n26 days ago",
       "url": "https://wuzzuf.net/jobs/p/dw9vbculsh2b-senior-data-engineer-vertex-technologies-cairo-egypt",
-      "scraped_at": "2026-04-17T07:12:32.449244+00:00",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
       "keyword": "data engineer"
     },
     {
@@ -77,9 +77,9 @@
         "Data Engineering",
         "Data Modeling"
       ],
-      "posted_date": "Data Engineer\nHyundai Rotem - Cairo, Egypt\n19 days ago",
+      "posted_date": "Data Engineer\nHyundai Rotem - Cairo, Egypt\n1 month ago",
       "url": "https://wuzzuf.net/jobs/p/beqgj9o9kpfk-data-engineer-hyundai-rotem-cairo-egypt",
-      "scraped_at": "2026-04-17T07:12:32.449244+00:00",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
       "keyword": "data engineer"
     },
     {
@@ -393,9 +393,9 @@
         "· Software Development",
         "Engineering"
       ],
-      "posted_date": "Senior Data Engineer\nGB Corp - Giza, Egypt\n15 hours ago",
+      "posted_date": "Senior Data Engineer\nGB Corp - Giza, Egypt\n25 days ago",
       "url": "https://wuzzuf.net/jobs/p/desxrlp7krfz-senior-data-engineer-gb-corp-giza-egypt",
-      "scraped_at": "2026-04-17T07:12:32.449244+00:00",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
       "keyword": "data engineer"
     },
     {
@@ -492,6 +492,238 @@
       "posted_date": "Senior Storage and Backup Engineer\nAnzemah - Giza, Egypt\n16 hours ago",
       "url": "https://wuzzuf.net/jobs/p/zl1tlcwdq9wm-senior-storage-and-backup-engineer-anzemah-giza-egypt",
       "scraped_at": "2026-04-17T07:12:32.449244+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "7tagxettmxon-data-center-administrator-blue-line-engineering-cairo-egypt",
+      "title": "Data Center Administrator",
+      "company": "Blue Line Engineering",
+      "location": "Cairo, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3 - 5 Yrs of Exp",
+      "skills": [
+        "Data Center Administrator",
+        "Blue Line Engineering -",
+        "Experienced",
+        "· IT/Software Development",
+        "· Strategy/Consulting",
+        "Data Entry",
+        "· power bi",
+        "· excel",
+        "· Administration",
+        "· Analysis",
+        "· Computer Science",
+        "· Customer Service"
+      ],
+      "posted_date": "Data Center Administrator\nBlue Line Engineering - Cairo, Egypt\n8 days ago",
+      "url": "https://wuzzuf.net/jobs/p/7tagxettmxon-data-center-administrator-blue-line-engineering-cairo-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "rcxc3cmmxyoa-process-engineer-kandil-glass-sharqia-egypt",
+      "title": "Process Engineer",
+      "company": "Kandil Glass",
+      "location": "10th of Ramadan City, Sharqia, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 1 - 2 Yrs of Exp",
+      "skills": [
+        "Kandil Glass -",
+        "Entry Level",
+        "· Engineering - Other",
+        "· Six Sigma",
+        "Data Analysis",
+        "· Communication",
+        "· Problem Solving",
+        "· Computer Science",
+        "Engineering"
+      ],
+      "posted_date": "Process Engineer\nKandil Glass - 10th of Ramadan City, Sharqia, Egypt\n1 day ago",
+      "url": "https://wuzzuf.net/jobs/p/rcxc3cmmxyoa-process-engineer-kandil-glass-sharqia-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "foiixa97sy1a-data-science-manger-technosat-cairo-egypt",
+      "title": "Data Science Manger",
+      "company": "TECHNOSAT",
+      "location": "Cairo, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 10+ Yrs of Exp",
+      "skills": [
+        "TECHNOSAT -",
+        "Manager",
+        "· IT/Software Development",
+        "Computer Engineering",
+        "Data Science",
+        "· AI Strategy",
+        "Data Strategy",
+        "· Digital Transformation",
+        "· Machine Learning"
+      ],
+      "posted_date": "Data Science Manger\nTECHNOSAT - Cairo, Egypt\n15 days ago",
+      "url": "https://wuzzuf.net/jobs/p/foiixa97sy1a-data-science-manger-technosat-cairo-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "zjhobauyardw-security-engineer-misr-international-systems-giza-egypt",
+      "title": "Security Engineer",
+      "company": "Misr International Systems",
+      "location": "Sheikh Zayed, Giza, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3 - 5 Yrs of Exp",
+      "skills": [
+        "Experienced",
+        "· IT/Software Development",
+        "data encryption",
+        "· Thales",
+        "· Cybersecurity",
+        "Data Security",
+        "· Computer Science",
+        "Engineering"
+      ],
+      "posted_date": "Security Engineer\nMisr International Systems - Sheikh Zayed, Giza, Egypt\n13 days ago",
+      "url": "https://wuzzuf.net/jobs/p/zjhobauyardw-security-engineer-misr-international-systems-giza-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "wzb5uwsxpxvm-industrial-engineer-midea-group-monufya-egypt",
+      "title": "Industrial Engineer",
+      "company": "Midea Group",
+      "location": "Alsadat City, Monufya, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Midea Group -",
+        "Experienced",
+        "Engineering",
+        "· Production",
+        "Mechanical Engineering",
+        "· Process Optimization",
+        "· Lean Manufacturing",
+        "· Quality Control",
+        "· Supply Chain Management",
+        "· Problem Solving",
+        "· Project Management"
+      ],
+      "posted_date": "Industrial Engineer\nMidea Group - Alsadat City, Monufya, Egypt\n14 days ago",
+      "url": "https://wuzzuf.net/jobs/p/wzb5uwsxpxvm-industrial-engineer-midea-group-monufya-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "ijwemksipoza-field-engineer-alexandria-egypt",
+      "title": "Field Engineer",
+      "company": "Experienced",
+      "location": "Alexandria, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 5 - 7 Yrs of Exp",
+      "skills": [
+        "Experienced",
+        "· ESP",
+        "Engineering",
+        "· Maintenance",
+        "· Oil & Gas Operations",
+        "· Troubleshooting",
+        "· Field Service",
+        "· Project Management",
+        "· Safety Regulations",
+        "· Technical Reporting"
+      ],
+      "posted_date": "Field Engineer\nConfidential - Alexandria, Egypt\n15 days ago",
+      "url": "https://wuzzuf.net/jobs/p/ijwemksipoza-field-engineer-alexandria-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "rfauq2u4jj2m-technical-office-engineer-dewan-for-real-estate-alexandria-egypt",
+      "title": "Technical Office Engineer",
+      "company": "Dewan for Real Estate",
+      "location": "Smouha, Alexandria, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3 - 5 Yrs of Exp",
+      "skills": [
+        "Dewan for Real Estate -",
+        "Experienced",
+        "· Project Scheduling",
+        "· Primavera P6",
+        "Data Analysis"
+      ],
+      "posted_date": "Technical Office Engineer\nDewan for Real Estate - Smouha, Alexandria, Egypt\n5 days ago",
+      "url": "https://wuzzuf.net/jobs/p/rfauq2u4jj2m-technical-office-engineer-dewan-for-real-estate-alexandria-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "asblmg4mgizs-quality-control-engineer-abou-seif-group-cairo-egypt",
+      "title": "Quality Control Engineer",
+      "company": "Abou Seif Group",
+      "location": "Obour City, Cairo, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 3 - 7 Yrs of Exp",
+      "skills": [
+        "Abou Seif Group -",
+        "Experienced",
+        "· Quality",
+        "· Quality Control",
+        "· Root Cause Analysis",
+        "· Lean Six Sigma",
+        "· Quality Assurance",
+        "· ISO standards",
+        "Engineering"
+      ],
+      "posted_date": "Quality Control Engineer\nAbou Seif Group - Obour City, Cairo, Egypt\n16 days ago",
+      "url": "https://wuzzuf.net/jobs/p/asblmg4mgizs-quality-control-engineer-abou-seif-group-cairo-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "5m1tjs1jg0i1-software-engineer-giza-egypt",
+      "title": "Software Engineer",
+      "company": "Entry Level",
+      "location": "Mohandessin, Giza, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 1 - 3 Yrs of Exp",
+      "skills": [
+        "Entry Level",
+        "· IT/Software Development",
+        "· Agile",
+        "· Computer Science",
+        "· Problem-solving",
+        "Data Structures",
+        "· Algorithms",
+        "· Version Control (Git)"
+      ],
+      "posted_date": "Software Engineer\nConfidential - Mohandessin, Giza, Egypt\n10 days ago",
+      "url": "https://wuzzuf.net/jobs/p/5m1tjs1jg0i1-software-engineer-giza-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
+      "keyword": "data engineer"
+    },
+    {
+      "job_id": "zj03nnwqsfof-purchasing-supervisor-engineer-ship-c-r-e-w-alexandria-egypt",
+      "title": "Purchasing Supervisor - Engineer",
+      "company": "Ship & C.R.E.W",
+      "location": "Stanley, Alexandria, Egypt",
+      "job_type": "Full Time",
+      "experience": "· 5 - 8 Yrs of Exp",
+      "skills": [
+        "Ship & C.R.E.W -",
+        "Manager",
+        "· Logistics/Supply Chain",
+        "· Purchasing/Procurement",
+        "· Logistics",
+        "· Procurement",
+        "· Supply Chain Management",
+        "· Purchasing",
+        "· Vendor Management",
+        "· Negotiation",
+        "· Inventory Management"
+      ],
+      "posted_date": "Purchasing Supervisor - Engineer\nShip & C.R.E.W - Stanley, Alexandria, Egypt\n15 days ago",
+      "url": "https://wuzzuf.net/jobs/p/zj03nnwqsfof-purchasing-supervisor-engineer-ship-c-r-e-w-alexandria-egypt",
+      "scraped_at": "2026-05-11T13:42:03.222195+00:00",
       "keyword": "data engineer"
     }
   ]
