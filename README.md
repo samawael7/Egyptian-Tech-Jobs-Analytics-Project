@@ -16,10 +16,7 @@ This platform answers key questions about Egypt's data job market:
 
 ## 🏗️ Architecture
 
-Wuzzuf.net → Playwright Scraper (JSON, 66 jobs) ─┐
-                                                   ├→ Combined Raw Data → Python/Pandas Cleaning → Snowflake (Raw) → dbt (Star Schema) → Power BI
-Wuzzuf.net → Selenium Scraper (CSV, 524 jobs)  ──┘
----
+
 
 ## 🛠️ Tech Stack
 
