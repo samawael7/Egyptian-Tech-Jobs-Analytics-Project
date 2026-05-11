@@ -153,6 +153,55 @@ def clean_job_titles(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+
+def filter_egypt_only(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    WHAT: Removes jobs that are not based in Egypt.
+
+    WHY:
+        Wuzzuf lists international jobs — same role posted across
+        multiple UK/UAE/Saudi cities inflates counts and corrupts analysis.
+        This project specifically analyzes Egypt's job market.
+
+    HOW:
+        Check job_url — Egyptian jobs always contain Egyptian cities.
+        Check city — known non-Egyptian cities get dropped.
+        Check company_name pattern for repeated international postings.
+    """
+    logger.info("Filtering Egypt-only jobs...")
+    before = len(df)
+
+    # Known non-Egyptian city indicators in URLs
+    non_egypt_url_patterns = [
+        "london", "manchester", "liverpool", "dundee", "chesterfield",
+        "united-kingdom", "riyadh", "dubai", "abu-dhabi", "doha",
+        "kuwait", "jeddah", "khobar", "saudi", "qatar", "uae"
+    ]
+
+    def is_egypt_job(row):
+        url  = str(row["job_url"]).lower()
+        city = str(row["city"]).lower()
+
+        # Check URL for non-Egyptian indicators
+        if any(pattern in url for pattern in non_egypt_url_patterns):
+            return False
+
+        # Check city
+        non_egypt_cities = {
+            "london", "manchester", "liverpool", "dundee", "chesterfield",
+            "city of london", "riyadh", "dubai", "abu dhabi", "doha",
+            "kuwait city", "jeddah", "khobar",
+        }
+        if city.lower() in non_egypt_cities:
+            return False
+
+        return True
+
+    df = df[df.apply(is_egypt_job, axis=1)].copy()
+    df = df.reset_index(drop=True)
+
+    logger.info(f"  Removed {before - len(df)} non-Egypt jobs. Remaining: {len(df)}")
+    return df
 # ══════════════════════════════════════════════════════════════════════════════
 # STEP 3 — PARSE EXPERIENCE
 # ══════════════════════════════════════════════════════════════════════════════
@@ -649,6 +698,7 @@ def run_cleaning_pipeline(
     # Run all steps in order
     df = load_raw_json(input_path)
     df = clean_job_titles(df)
+    df = filter_egypt_only(df) 
     df = parse_experience_years(df)
     df = classify_experience_level(df)
     df = convert_posted_date(df)

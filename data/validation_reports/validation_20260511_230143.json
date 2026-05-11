@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-05-11T23:01:43.087469",
+  "parquet_path": "data\\processed\\jobs_cleaned.parquet",
+  "row_count": 137,
+  "total_expectations": 27,
+  "passed": 27,
+  "failed": 0,
+  "success": true
+}
