@@ -1,5 +1,3 @@
-
-
 WITH companies AS (
 
     SELECT DISTINCT
