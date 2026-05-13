@@ -1,0 +1,82 @@
+
+version: 2
+
+models:
+  - name: stg_jobs
+    description: >
+      Cleaned and standardized staging layer on top of raw_jobs.
+      Light transformations only — no business logic.
+      Materialized as incremental table — only processes new rows per daily run.
+
+    columns:
+      - name: job_id
+        description: >
+          Surrogate key — MD5 hash of job_url.
+          Uniquely identifies each job posting across all scrape runs.
+        tests:
+          - unique      # no two rows can have same job_id
+          - not_null    # every row must have a job_id
+
+      - name: job_title
+        description: "Job title as scraped from Wuzzuf, whitespace trimmed"
+        tests:
+          - not_null
+
+      - name: job_url
+        description: "Full Wuzzuf URL — business key used for deduplication"
+        tests:
+          - unique
+          - not_null
+
+      - name: experience_level
+        description: "Classified seniority: junior / mid / senior / executive"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['junior', 'mid', 'senior', 'executive']  
+
+      - name: work_type
+        description: "Whether job is on-site, hybrid, or remote"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['On-site', 'Hybrid', 'Remote']
+
+      - name: company_type
+        description: "Classification of hiring company"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['MNC', 'Corporate', 'Startup', 'Government', 'Unknown']
+
+      - name: job_category
+        description: "Tech role category classified from job title keywords"
+
+      - name: city
+        description: "Egyptian city where job is located"
+
+      - name: country
+        description: "Always 'Egypt' — non-Egypt jobs filtered in clean.py"
+
+      - name: min_experience
+        description: "Minimum years of experience required. NULL if not specified."
+
+      - name: max_experience
+        description: "Maximum years of experience required. NULL if open-ended or not specified."
+
+      - name: experience_gap
+        description: "Difference between max and min experience. NULL if either is missing."
+
+      - name: posted_date
+        description: "Absolute date job was posted, derived from relative Wuzzuf text"
+        tests:
+          - not_null
+
+      - name: scrape_date
+        description: "Date this job was scraped by the pipeline"
+        tests:
+          - not_null
+
+      - name: days_on_market
+        description: "Days between posted_date and scrape_date. Indicates how long job has been open."

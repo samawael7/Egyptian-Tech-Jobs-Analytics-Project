@@ -52,7 +52,7 @@ logger = logging.getLogger(__name__)
 SNOWFLAKE_CONFIG = {
     "account"  : os.getenv("SNOWFLAKE_ACCOUNT",   "jsgtohn-dcb76328"),
     "user"     : os.getenv("SNOWFLAKE_USER",       "samawael"),
-    "password" : os.getenv("SNOWFLAKE_PASSWORD",   ""),   # NEVER hardcode this
+    "password" : os.getenv("SNOWFLAKE_PASSWORD",   ""),   
     "warehouse": os.getenv("SNOWFLAKE_WAREHOUSE",  "dev_wh"),
     "database" : os.getenv("SNOWFLAKE_DATABASE",   "egypt_jobs_db"),
     "schema"   : os.getenv("SNOWFLAKE_SCHEMA",     "raw"),

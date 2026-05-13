@@ -1,0 +1,212 @@
+
+version: 2
+
+models:
+  - name: fact_jobs
+    description: >
+      Central fact table — one row per job posting.
+      Contains foreign keys to all dimension tables plus measurable facts.
+      This is the center of the star schema that Power BI joins through.
+
+    columns:
+      - name: fact_id
+        description: "Surrogate primary key for this fact row"
+        tests:
+          - unique
+          - not_null
+
+      - name: job_id
+        description: "Foreign key to dim_job"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_job')
+              field: job_id
+
+      - name: company_id
+        description: "Foreign key to dim_company"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_company')
+              field: company_id
+
+      - name: location_id
+        description: "Foreign key to dim_location"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_location')
+              field: location_id
+
+      - name: date_id
+        description: "Foreign key to dim_date"
+        tests:
+          - not_null
+
+      - name: min_experience
+        description: "Minimum years of experience required. NULL if not specified."
+
+      - name: max_experience
+        description: "Maximum years of experience required. NULL if open-ended."
+
+      - name: job_type
+        description: "Full Time / Part Time / Internship / Freelance"
+
+      - name: work_type
+        description: "On-site / Hybrid / Remote"
+
+      - name: job_url
+        description: "Original Wuzzuf URL — kept for traceability back to source"
+
+  - name: dim_job
+    description: "Job dimension — one row per job posting with descriptive attributes"
+    columns:
+      - name: job_id
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: job_title
+        description: "Job title as scraped"
+        tests:
+          - not_null
+      - name: job_category
+        description: "Tech role category"
+      - name: experience_level
+        description: "junior / mid / senior / executive"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['junior', 'mid', 'senior', 'executive']
+      - name: scrape_date
+        description: "Date this job was scraped"
+
+  - name: dim_company
+    description: "Company dimension — one row per unique company"
+    columns:
+      - name: company_id
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: "Company name as scraped from Wuzzuf"
+        tests:
+          - not_null
+      - name: company_type
+        description: "MNC / Corporate / Startup / Government / Unknown"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['MNC', 'Corporate', 'Startup', 'Government', 'Unknown']
+
+  - name: dim_location
+    description: "Location dimension — one row per unique city"
+    columns:
+      - name: location_id
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: city
+        description: "Egyptian city name"
+        tests:
+          - not_null
+      - name: country
+        description: "Always Egypt"
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: "Date dimension — one row per unique posting date"
+    columns:
+      - name: date_id
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: "The actual date"
+        tests:
+          - unique
+          - not_null
+      - name: day
+        description: "Day of month (1-31)"
+      - name: month
+        description: "Month number (1-12)"
+      - name: year
+        description: "4-digit year"
+      - name: quarter
+        description: "Quarter (1-4)"
+      - name: week_of_year
+        description: "Week number within the year"
+      - name: month_name
+        description: "Full month name (January, February...)"
+      - name: day_name
+        description: "Full day name (Monday, Tuesday...)"
+
+  - name: dim_skills
+    description: "Skills dimension — one row per unique skill across all jobs"
+    columns:
+      - name: skill_id
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+      - name: skill_name
+        description: "Normalized lowercase skill name"
+        tests:
+          - unique
+          - not_null
+
+  - name: bridge_job_skills
+    description: >
+      Many-to-many bridge table between jobs and skills.
+      One row per job-skill combination.
+      A job with 5 skills = 5 rows here, all with same job_id.
+      Powers skill frequency and co-occurrence analysis.
+    columns:
+      - name: job_id
+        description: "Foreign key to fact_jobs and dim_job"
+        tests:
+          - not_null
+      - name: skill_id
+        description: "Foreign key to dim_skills"
+        tests:
+          - not_null
+
+  - name: mart_job_metrics
+    description: >
+      Pre-computed analytical metrics for Power BI consumption.
+      One row per unique skill with demand score, rarity score, and category.
+      Materialized as table — recalculated fully on each dbt run.
+    columns:
+      - name: skill_name
+        description: "The skill being measured"
+        tests:
+          - not_null
+          - unique
+      - name: jobs_requiring_skill
+        description: "Count of distinct jobs that list this skill"
+        tests:
+          - not_null
+      - name: skill_demand_score
+        description: >
+          Percentage of all jobs requiring this skill.
+          Range: 0.00 to 100.00.
+          Example: SQL = 45.0 means 45% of all jobs mention SQL.
+        tests:
+          - not_null
+      - name: skill_rarity_score
+        description: >
+          Inverse of demand score (100 - demand_score).
+          High rarity = specialized/rare skill.
+          Low rarity = common skill.
+        tests:
+          - not_null
+      - name: demand_category
+        description: "Bucketed demand level for Power BI filtering"
+        tests:
+          - accepted_values:
+              values: ['High Demand', 'Medium Demand', 'Niche']
