@@ -1,20 +1,4 @@
 """
-pipeline/clean.py
-─────────────────
-WHAT:
-    Cleaning and enrichment pipeline for raw Wuzzuf job data.
-    Converts raw JSON (from scraper) → cleaned Parquet (ready for Snowflake).
-
-WHY THIS FILE EXISTS:
-    The cleaning logic lives in notebooks/01_cleaning.ipynb for documentation.
-    Airflow cannot run notebooks — it needs importable Python functions.
-    This file is the production version of that notebook.
-
-WHY PARQUET OUTPUT:
-    - 5-10x smaller than CSV (columnar + compressed)
-    - Preserves data types (dates stay dates, not strings)
-    - Snowflake reads Parquet much faster than CSV
-    - Industry standard format for data pipelines
 
 HOW AIRFLOW USES THIS:
     from pipeline.clean import run_cleaning_pipeline
