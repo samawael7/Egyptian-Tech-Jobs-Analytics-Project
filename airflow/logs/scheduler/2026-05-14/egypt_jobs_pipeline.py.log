@@ -3792,3 +3792,31 @@
 [2026-05-14T15:08:50.608+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:08:50.608+0000] {dag.py:3096} INFO - Sync 1 DAGs
 [2026-05-14T15:08:50.636+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:08:50.636+0000] {dag.py:3954} INFO - Setting next_dagrun for egypt_jobs_pipeline to 2026-05-14 07:00:00+00:00, run_after=2026-05-15 07:00:00+00:00
 [2026-05-14T15:08:50.662+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/egypt_jobs_pipeline.py took 0.180 seconds
+[2026-05-14T15:09:20.852+0000] {processor.py:161} INFO - Started process (PID=2034) to work on /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:09:20.854+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/egypt_jobs_pipeline.py for tasks to queue
+[2026-05-14T15:09:20.857+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:09:20.856+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:09:20.887+0000] {processor.py:840} INFO - DAG(s) 'egypt_jobs_pipeline' retrieved from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:09:20.927+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:09:20.926+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-14T15:09:20.960+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:09:20.960+0000] {dag.py:3954} INFO - Setting next_dagrun for egypt_jobs_pipeline to 2026-05-14 07:00:00+00:00, run_after=2026-05-15 07:00:00+00:00
+[2026-05-14T15:09:20.989+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/egypt_jobs_pipeline.py took 0.147 seconds
+[2026-05-14T15:09:51.333+0000] {processor.py:161} INFO - Started process (PID=2039) to work on /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:09:51.335+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/egypt_jobs_pipeline.py for tasks to queue
+[2026-05-14T15:09:51.341+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:09:51.340+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:09:51.410+0000] {processor.py:840} INFO - DAG(s) 'egypt_jobs_pipeline' retrieved from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:09:51.473+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:09:51.473+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-14T15:09:51.524+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:09:51.524+0000] {dag.py:3954} INFO - Setting next_dagrun for egypt_jobs_pipeline to 2026-05-14 07:00:00+00:00, run_after=2026-05-15 07:00:00+00:00
+[2026-05-14T15:09:51.566+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/egypt_jobs_pipeline.py took 0.250 seconds
+[2026-05-14T15:10:21.688+0000] {processor.py:161} INFO - Started process (PID=2044) to work on /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:10:21.690+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/egypt_jobs_pipeline.py for tasks to queue
+[2026-05-14T15:10:21.695+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:10:21.694+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:10:21.749+0000] {processor.py:840} INFO - DAG(s) 'egypt_jobs_pipeline' retrieved from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:10:21.818+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:10:21.817+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-14T15:10:21.857+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:10:21.857+0000] {dag.py:3954} INFO - Setting next_dagrun for egypt_jobs_pipeline to 2026-05-14 07:00:00+00:00, run_after=2026-05-15 07:00:00+00:00
+[2026-05-14T15:10:21.882+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/egypt_jobs_pipeline.py took 0.210 seconds
+[2026-05-14T15:10:52.239+0000] {processor.py:161} INFO - Started process (PID=2049) to work on /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:10:52.240+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/egypt_jobs_pipeline.py for tasks to queue
+[2026-05-14T15:10:52.243+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:10:52.242+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:10:52.284+0000] {processor.py:840} INFO - DAG(s) 'egypt_jobs_pipeline' retrieved from /opt/airflow/dags/egypt_jobs_pipeline.py
+[2026-05-14T15:10:52.328+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:10:52.328+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2026-05-14T15:10:52.361+0000] {logging_mixin.py:188} INFO - [2026-05-14T15:10:52.360+0000] {dag.py:3954} INFO - Setting next_dagrun for egypt_jobs_pipeline to 2026-05-14 07:00:00+00:00, run_after=2026-05-15 07:00:00+00:00
+[2026-05-14T15:10:52.386+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/egypt_jobs_pipeline.py took 0.154 seconds
