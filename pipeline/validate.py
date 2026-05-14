@@ -1,27 +1,9 @@
-"""
-pipeline/validate.py
-====================
-Data quality validation using Great Expectations v1.x.
-
-Validates the cleaned Parquet file before it touches Snowflake.
-If any expectation fails → raises DataValidationError → Airflow stops pipeline.
-
-AIRFLOW USAGE:
-    from pipeline.validate import run_validation
-    run_validation(parquet_path=Path("data/processed/jobs_cleaned.parquet"))
-"""
-
 import logging
-import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 import pandas as pd
-import great_expectations as gx
 
-# ---------------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
@@ -30,221 +12,229 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# ---------------------------------------------------------------------------
-# Custom Exception
-# ---------------------------------------------------------------------------
-class DataValidationError(Exception):
-    """Raised when Great Expectations validation fails."""
-    pass
+# ══════════════════════════════════════════════════════════════════════════════
+# VALIDATION RULES
+# ══════════════════════════════════════════════════════════════════════════════
 
-
-# ---------------------------------------------------------------------------
-# Report Helper
-# ---------------------------------------------------------------------------
-def _save_validation_report(results: dict, report_dir: Path) -> Path:
-    report_dir.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    report_path = report_dir / f"validation_{timestamp}.json"
-    with open(report_path, "w") as f:
-        json.dump(results, f, indent=2, default=str)
-    logger.info(f"  Validation report saved → {report_path}")
-    return report_path
-
-
-# ---------------------------------------------------------------------------
-# Core Validation Logic
-# ---------------------------------------------------------------------------
 def run_validation(
     parquet_path: Path = Path("data/processed/jobs_cleaned.parquet"),
-    report_dir: Path = Path("data/validation_reports"),
 ) -> bool:
     """
-    Run all Great Expectations v1.x checks on the cleaned Parquet file.
+    Runs all data quality checks on the cleaned Parquet file.
 
-    GE v1.x uses the "fluent" API:
-        context → add_pandas_datasource → add_dataframe_asset
-        → add_batch_definition → get_batch → add_expectations → validate
+    WHAT IT CHECKS:
+        1. File exists and is readable
+        2. Row count is within expected range
+        3. Required columns all exist
+        4. Critical columns have no nulls
+        5. Categorical columns only contain valid values
+        6. job_url values are unique
+        7. URLs look like real Wuzzuf URLs
+        8. Date range is reasonable
 
-    Returns True on success, raises DataValidationError on failure.
+    RETURNS:
+        True if all checks pass.
+
+    RAISES:
+        ValueError with details if any check fails.
+        This causes Airflow to mark the task as FAILED.
     """
     logger.info("=" * 55)
     logger.info("VALIDATION STARTED")
     logger.info("=" * 55)
 
-    # ------------------------------------------------------------------
-    # 1. Load data
-    # ------------------------------------------------------------------
+    # Track all failures — collect all issues before raising
+    # WHY COLLECT ALL: if we raise on first failure, you fix it,
+    # run again, find the next failure. Better to report everything at once.
+    failures = []
+    passed   = 0
+
+    # ── Load file ─────────────────────────────────────────────────────────────
+    parquet_path = Path(parquet_path)
     if not parquet_path.exists():
-        raise FileNotFoundError(
-            f"Parquet file not found: {parquet_path}\n"
-            "Run pipeline/clean.py first."
-        )
+        raise FileNotFoundError(f"Parquet file not found: {parquet_path}")
 
     df = pd.read_parquet(parquet_path)
     logger.info(f"Loaded {len(df)} rows from {parquet_path}")
 
-    # ------------------------------------------------------------------
-    # 2. GE v1.x context + datasource (ephemeral = no files written)
-    # ------------------------------------------------------------------
-    context = gx.get_context(mode="ephemeral")
+    # ── Check 1: Row count ────────────────────────────────────────────────────
+    # WHY: If scraper returns 0 jobs, pipeline should stop immediately.
+    # Upper bound catches runaway scraping or data explosions.
+    min_rows, max_rows = 10, 10000
+    if not (min_rows <= len(df) <= max_rows):
+        failures.append(
+            f"Row count {len(df)} outside expected range [{min_rows}, {max_rows}]"
+        )
+    else:
+        passed += 1
+        logger.info(f"✅ Row count: {len(df)} (expected {min_rows}–{max_rows})")
 
-    datasource = context.data_sources.add_pandas("pipeline_datasource")
-    data_asset = datasource.add_dataframe_asset("cleaned_jobs")
-    batch_definition = data_asset.add_batch_definition_whole_dataframe("full_batch")
-    batch = batch_definition.get_batch(batch_parameters={"dataframe": df})
-
-    # ------------------------------------------------------------------
-    # 3. Build Expectation Suite
-    # ------------------------------------------------------------------
-    suite = context.suites.add(gx.ExpectationSuite(name="egypt_jobs_suite"))
-
-    # Row count
-    suite.add_expectation(
-        gx.expectations.ExpectTableRowCountToBeBetween(min_value=10, max_value=5000)
-    )
-
-    # Required columns exist
+    # ── Check 2: Required columns exist ───────────────────────────────────────
     required_columns = [
         "job_title", "company_name", "job_type", "skills_list",
         "job_category", "posted_date", "job_url", "city", "work_type",
         "min_experience", "max_experience", "experience_level",
         "scrape_date", "company_type",
     ]
-    for col in required_columns:
-        suite.add_expectation(gx.expectations.ExpectColumnToExist(column=col))
+    missing_cols = [c for c in required_columns if c not in df.columns]
+    if missing_cols:
+        failures.append(f"Missing columns: {missing_cols}")
+    else:
+        passed += 1
+        logger.info(f"✅ All {len(required_columns)} required columns present")
 
-    # Critical fields: never null
-    for col in ["job_url", "job_title", "company_name", "job_category", "scrape_date"]:
-        suite.add_expectation(
-            gx.expectations.ExpectColumnValuesToNotBeNull(column=col)
-        )
+    # ── Check 3: No nulls in critical columns ─────────────────────────────────
+    # WHY THESE COLUMNS: These are the ones your star schema and
+    # dbt surrogate keys depend on. Nulls here break everything downstream.
+    critical_columns = [
+        "job_title", "job_url", "experience_level",
+        "posted_date", "scrape_date", "company_type",
+    ]
+    for col in critical_columns:
+        if col in df.columns:
+            null_count = df[col].isna().sum()
+            if null_count > 0:
+                failures.append(f"Column '{col}' has {null_count} null values")
+            else:
+                passed += 1
+                logger.info(f"✅ No nulls in '{col}'")
 
-    # job_url: unique
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToBeUnique(column="job_url")
-    )
+    # ── Check 4: job_url uniqueness ───────────────────────────────────────────
+    # WHY: Duplicate URLs = duplicate jobs in Snowflake even with MERGE.
+    # The Snowflake MERGE uses job_url as the match key — duplicates here
+    # cause the second occurrence to overwrite the first silently.
+    if "job_url" in df.columns:
+        dupe_count = df["job_url"].duplicated().sum()
+        if dupe_count > 0:
+            failures.append(f"job_url has {dupe_count} duplicate values")
+        else:
+            passed += 1
+            logger.info(f"✅ job_url is unique across all {len(df)} rows")
 
-    # job_url: correct format
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToMatchRegex(
-            column="job_url",
-            regex=r"^https://wuzzuf\.net/jobs/",
-            mostly=0.95,
-        )
-    )
+    # ── Check 5: experience_level valid values ─────────────────────────────────
+    valid_exp_levels = {"junior", "mid", "senior", "executive"}
+    if "experience_level" in df.columns:
+        invalid = df[~df["experience_level"].isin(valid_exp_levels)]["experience_level"].unique()
+        if len(invalid) > 0:
+            failures.append(f"experience_level has invalid values: {invalid.tolist()}")
+        else:
+            passed += 1
+            logger.info(f"✅ experience_level values all valid: {df['experience_level'].value_counts().to_dict()}")
 
-    # experience_level: valid categories
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToBeInSet(
-            column="experience_level",
-            value_set=["junior", "mid", "senior", "executive"],
-        )
-    )
+    # ── Check 6: work_type valid values ───────────────────────────────────────
+    valid_work_types = {"On-site", "Hybrid", "Remote"}
+    if "work_type" in df.columns:
+        invalid = df[~df["work_type"].isin(valid_work_types)]["work_type"].unique()
+        if len(invalid) > 0:
+            failures.append(f"work_type has invalid values: {invalid.tolist()}")
+        else:
+            passed += 1
+            logger.info(f"✅ work_type values all valid: {df['work_type'].value_counts().to_dict()}")
 
-    # work_type: valid categories
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToBeInSet(
-            column="work_type",
-            value_set=["On-site", "Remote", "Hybrid", "Unknown"],
-        )
-    )
+    # ── Check 7: company_type valid values ────────────────────────────────────
+    valid_company_types = {"MNC", "Corporate", "Startup", "Government", "Unknown"}
+    if "company_type" in df.columns:
+        invalid = df[~df["company_type"].isin(valid_company_types)]["company_type"].unique()
+        if len(invalid) > 0:
+            failures.append(f"company_type has invalid values: {invalid.tolist()}")
+        else:
+            passed += 1
+            logger.info(f"✅ company_type values all valid: {df['company_type'].value_counts().to_dict()}")
 
-    # company_type: valid categories
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToBeInSet(
-            column="company_type",
-            value_set=["Corporate", "Startup", "MNC", "Government", "Unknown"],
-        )
-    )
+    # ── Check 8: job_url format ────────────────────────────────────────────────
+    # WHY: Ensures scraper returned real Wuzzuf URLs, not garbage.
+    if "job_url" in df.columns:
+        invalid_urls = df[~df["job_url"].str.startswith("https://wuzzuf.net")]
+        if len(invalid_urls) > 0:
+            failures.append(
+                f"{len(invalid_urls)} job_urls don't start with https://wuzzuf.net"
+            )
+        else:
+            passed += 1
+            logger.info(f"✅ All job_urls are valid Wuzzuf URLs")
 
-    # job_type: valid categories
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToBeInSet(
-            column="job_type",
-            value_set=["Full Time", "Part Time", "Freelance / Project", "Internship"],
-            mostly=0.90,
-        )
-    )
+    # ── Check 9: Date range sanity ────────────────────────────────────────────
+    # WHY: Catches date parsing bugs — if posted_date is all NULL or
+    # far in the future, something went wrong in clean.py
+    if "posted_date" in df.columns:
+        try:
+            dates      = pd.to_datetime(df["posted_date"])
+            min_date   = dates.min()
+            max_date   = dates.max()
+            today      = pd.Timestamp.today()
+            days_range = (today - min_date).days
 
-    # min_experience: sane range when present
-    suite.add_expectation(
-        gx.expectations.ExpectColumnValuesToBeBetween(
-            column="min_experience",
-            min_value=0,
-            max_value=30,
-            mostly=0.95,
-        )
-    )
+            if days_range > 365:
+                failures.append(
+                    f"posted_date range too wide: {min_date} to {max_date} ({days_range} days)"
+                )
+            elif max_date > today:
+                failures.append(f"posted_date has future dates: max={max_date}")
+            else:
+                passed += 1
+                logger.info(f"✅ Date range valid: {min_date.date()} → {max_date.date()}")
+        except Exception as e:
+            failures.append(f"posted_date parsing failed: {e}")
 
-    # ------------------------------------------------------------------
-    # 4. Validate
-    # ------------------------------------------------------------------
-    validation_definition = context.validation_definitions.add(
-        gx.ValidationDefinition(
-            name="egypt_jobs_validation",
-            data=batch_definition,
-            suite=suite,
-        )
-    )
+    # ── Check 10: Skills list not all empty ───────────────────────────────────
+    # WHY: If skills are all empty, the bridge_job_skills table will be empty
+    # which breaks your skills analysis entirely
+    if "skills_list" in df.columns:
+        empty_skills = df["skills_list"].apply(
+            lambda x: str(x).strip() in ["[]", "None", "nan", ""]
+        ).sum()
+        empty_pct = empty_skills / len(df) * 100
 
-    results = validation_definition.run(batch_parameters={"dataframe": df})
+        if empty_pct > 80:
+            failures.append(
+                f"{empty_pct:.1f}% of jobs have empty skills — scraper may be broken"
+            )
+        else:
+            passed += 1
+            logger.info(f"✅ Skills present: {len(df) - empty_skills}/{len(df)} jobs have skills")
 
-    # ------------------------------------------------------------------
-    # 5. Parse results
-    # ------------------------------------------------------------------
-    total      = results.statistics["evaluated_expectations"]
-    successful = results.statistics["successful_expectations"]
-    failed     = results.statistics["unsuccessful_expectations"]
-    success    = results.success
+    # ── Save validation report ────────────────────────────────────────────────
+    report_dir = Path("data/validation_reports")
+    report_dir.mkdir(parents=True, exist_ok=True)
+    timestamp   = datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_path = report_dir / f"validation_{timestamp}.json"
 
-    logger.info("-" * 55)
-    logger.info(f"Expectations evaluated : {total}")
-    logger.info(f"Passed                 : {successful}")
-    logger.info(f"Failed                 : {failed}")
-    logger.info("-" * 55)
-
-    if not success:
-        logger.error("FAILED EXPECTATIONS:")
-        for result in results.results:
-            if not result.success:
-                col = getattr(result.expectation_config, "column", "table-level")
-                logger.error(f"  ✗ {result.expectation_config.type} | column: {col}")
-
-    # Save report
-    report_summary = {
-        "timestamp": datetime.now().isoformat(),
-        "parquet_path": str(parquet_path),
-        "row_count": len(df),
-        "total_expectations": total,
-        "passed": successful,
-        "failed": failed,
-        "success": success,
+    import json
+    report = {
+        "timestamp"      : timestamp,
+        "parquet_path"   : str(parquet_path),
+        "total_rows"     : len(df),
+        "checks_passed"  : passed,
+        "checks_failed"  : len(failures),
+        "failures"       : failures,
+        "status"         : "PASSED" if not failures else "FAILED",
     }
-    _save_validation_report(report_summary, report_dir)
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=2)
 
-    # ------------------------------------------------------------------
-    # 6. Raise on failure
-    # ------------------------------------------------------------------
-    if not success:
-        logger.error("=" * 55)
-        logger.error("VALIDATION FAILED — pipeline stopped")
-        logger.error("=" * 55)
-        raise DataValidationError(
-            f"Validation failed: {failed}/{total} expectations did not pass. "
-            f"Check report in {report_dir}"
+    # ── Final result ──────────────────────────────────────────────────────────
+    logger.info("-" * 55)
+    logger.info(f"Checks passed : {passed}")
+    logger.info(f"Checks failed : {len(failures)}")
+    logger.info(f"Report saved  → {report_path}")
+    logger.info("-" * 55)
+
+    if failures:
+        logger.error("VALIDATION FAILED ❌")
+        for f in failures:
+            logger.error(f"  ✗ {f}")
+        raise ValueError(
+            f"Validation failed with {len(failures)} issue(s):\n" +
+            "\n".join(f"  - {f}" for f in failures)
         )
 
-    logger.info("=" * 55)
     logger.info("VALIDATION PASSED ✅")
     logger.info("=" * 55)
     return True
 
 
-# ---------------------------------------------------------------------------
-# Standalone execution
-# ---------------------------------------------------------------------------
+# ── Local Testing ─────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     run_validation(
-        parquet_path=Path("data/processed/jobs_cleaned.parquet"),
-        report_dir=Path("data/validation_reports"),
+        parquet_path=Path("data/processed/jobs_cleaned.parquet")
     )

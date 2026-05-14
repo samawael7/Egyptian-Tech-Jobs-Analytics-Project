@@ -33,22 +33,19 @@ models:
         tests:
           - not_null
           - accepted_values:
-              arguments:
-                values: ['junior', 'mid', 'senior', 'executive']  
+              values: ['junior', 'mid', 'senior', 'executive']  
 
       - name: work_type
         description: "Whether job is on-site, hybrid, or remote"
         tests:
           - accepted_values:
-              arguments:
-                values: ['On-site', 'Hybrid', 'Remote']
+              values: ['On-site', 'Hybrid', 'Remote']
 
       - name: company_type
         description: "Classification of hiring company"
         tests:
           - accepted_values:
-              arguments:
-                values: ['MNC', 'Corporate', 'Startup', 'Government', 'Unknown']
+              values: ['MNC', 'Corporate', 'Startup', 'Government', 'Unknown']
 
       - name: job_category
         description: "Tech role category classified from job title keywords"

@@ -77,8 +77,7 @@ models:
         description: "junior / mid / senior / executive"
         tests:
           - accepted_values:
-              arguments:
-                values: ['junior', 'mid', 'senior', 'executive']
+              values: ['junior', 'mid', 'senior', 'executive']
       - name: scrape_date
         description: "Date this job was scraped"
 
@@ -98,8 +97,7 @@ models:
         description: "MNC / Corporate / Startup / Government / Unknown"
         tests:
           - accepted_values:
-              arguments:
-                values: ['MNC', 'Corporate', 'Startup', 'Government', 'Unknown']
+              values: ['MNC', 'Corporate', 'Startup', 'Government', 'Unknown']
 
   - name: dim_location
     description: "Location dimension — one row per unique city"

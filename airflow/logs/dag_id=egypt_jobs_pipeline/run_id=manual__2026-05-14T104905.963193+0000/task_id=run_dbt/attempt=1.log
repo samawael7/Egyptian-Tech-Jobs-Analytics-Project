@@ -1,0 +1,163 @@
+[2026-05-14T12:45:08.230+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-14T12:45:08.264+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.run_dbt manual__2026-05-14T10:49:05.963193+00:00 [queued]>
+[2026-05-14T12:45:08.273+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.run_dbt manual__2026-05-14T10:49:05.963193+00:00 [queued]>
+[2026-05-14T12:45:08.274+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-14T12:45:08.288+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): run_dbt> on 2026-05-14 10:49:05.963193+00:00
+[2026-05-14T12:45:08.292+0000] {standard_task_runner.py:63} INFO - Started process 519 to run task
+[2026-05-14T12:45:08.296+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'egypt_jobs_pipeline', 'run_dbt', 'manual__2026-05-14T10:49:05.963193+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/egypt_jobs_pipeline.py', '--cfg-path', '/tmp/tmpfe9tdtuc']
+[2026-05-14T12:45:08.299+0000] {standard_task_runner.py:91} INFO - Job 30: Subtask run_dbt
+[2026-05-14T12:45:08.346+0000] {task_command.py:426} INFO - Running <TaskInstance: egypt_jobs_pipeline.run_dbt manual__2026-05-14T10:49:05.963193+00:00 [running]> on host f6632be07a8e
+[2026-05-14T12:45:08.476+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sama' AIRFLOW_CTX_DAG_ID='egypt_jobs_pipeline' AIRFLOW_CTX_TASK_ID='run_dbt' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T10:49:05.963193+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T10:49:05.963193+00:00'
+[2026-05-14T12:45:08.478+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-14T12:45:08.504+0000] {logging_mixin.py:188} INFO - Running dbt models...
+[2026-05-14T12:45:49.248+0000] {logging_mixin.py:188} INFO - 12:45:10  Running with dbt=1.8.0
+12:45:12  Registered adapter: snowflake=1.8.0
+12:45:12  Unable to do partial parsing because of a version mismatch
+12:45:16  [WARNING]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+12:45:17  Found 9 models, 48 data tests, 1 source, 574 macros
+12:45:17  
+12:45:22  Concurrency: 4 threads (target='dev')
+12:45:22  
+12:45:22  1 of 9 START sql incremental model staging_staging.stg_jobs .................... [RUN]
+12:45:29  1 of 9 OK created sql incremental model staging_staging.stg_jobs ............... [SUCCESS 137 in 7.51s]
+12:45:29  2 of 9 START sql table model staging_marts.dim_company ......................... [RUN]
+12:45:29  3 of 9 START sql table model staging_marts.dim_date ............................ [RUN]
+12:45:29  4 of 9 START sql table model staging_marts.dim_job ............................. [RUN]
+12:45:29  5 of 9 START sql table model staging_marts.dim_location ........................ [RUN]
+12:45:32  4 of 9 OK created sql table model staging_marts.dim_job ........................ [SUCCESS 1 in 2.96s]
+12:45:32  6 of 9 START sql table model staging_marts.dim_skills .......................... [RUN]
+12:45:32  5 of 9 OK created sql table model staging_marts.dim_location ................... [SUCCESS 1 in 3.15s]
+12:45:32  2 of 9 OK created sql table model staging_marts.dim_company .................... [SUCCESS 1 in 3.27s]
+12:45:32  3 of 9 OK created sql table model staging_marts.dim_date ....................... [SUCCESS 1 in 3.37s]
+12:45:32  7 of 9 START sql table model staging_marts.fact_jobs ........................... [RUN]
+12:45:36  7 of 9 OK created sql table model staging_marts.fact_jobs ...................... [SUCCESS 1 in 3.91s]
+12:45:41  6 of 9 OK created sql table model staging_marts.dim_skills ..................... [SUCCESS 1 in 8.88s]
+12:45:41  8 of 9 START sql table model staging_marts.bridge_job_skills ................... [RUN]
+12:45:44  8 of 9 OK created sql table model staging_marts.bridge_job_skills .............. [SUCCESS 1 in 2.93s]
+12:45:44  9 of 9 START sql table model staging_marts.mart_job_metrics .................... [RUN]
+12:45:47  9 of 9 OK created sql table model staging_marts.mart_job_metrics ............... [SUCCESS 1 in 3.40s]
+12:45:47  
+12:45:47  Finished running 1 incremental model, 8 table models in 0 hours 0 minutes and 30.69 seconds (30.69s).
+12:45:47  
+12:45:47  Completed successfully
+12:45:47  
+12:45:47  Done. PASS=9 WARN=0 ERROR=0 SKIP=0 TOTAL=9
+[2026-05-14T12:45:49.249+0000] {logging_mixin.py:188} INFO - Running dbt tests...
+[2026-05-14T12:46:28.045+0000] {logging_mixin.py:188} INFO - 12:45:51  Running with dbt=1.8.0
+12:45:52  Registered adapter: snowflake=1.8.0
+12:45:55  Found 9 models, 48 data tests, 1 source, 574 macros
+12:45:55  
+12:45:58  Concurrency: 4 threads (target='dev')
+12:45:58  
+12:45:58  1 of 48 START test accepted_values_dim_company_company_type__MNC__Corporate__Startup__Government__Unknown  [RUN]
+12:45:58  2 of 48 START test accepted_values_dim_job_experience_level__junior__mid__senior__executive  [RUN]
+12:45:58  3 of 48 START test accepted_values_mart_job_metrics_demand_category__High_Demand__Medium_Demand__Niche  [RUN]
+12:45:58  4 of 48 START test accepted_values_stg_jobs_company_type__MNC__Corporate__Startup__Government__Unknown  [RUN]
+12:46:01  2 of 48 PASS accepted_values_dim_job_experience_level__junior__mid__senior__executive  [PASS in 2.46s]
+12:46:01  5 of 48 START test accepted_values_stg_jobs_experience_level__junior__mid__senior__executive  [RUN]
+12:46:01  1 of 48 PASS accepted_values_dim_company_company_type__MNC__Corporate__Startup__Government__Unknown  [PASS in 2.59s]
+12:46:01  6 of 48 START test accepted_values_stg_jobs_work_type__On_site__Hybrid__Remote . [RUN]
+12:46:01  4 of 48 PASS accepted_values_stg_jobs_company_type__MNC__Corporate__Startup__Government__Unknown  [PASS in 2.91s]
+12:46:01  7 of 48 START test not_null_bridge_job_skills_job_id ........................... [RUN]
+12:46:03  6 of 48 PASS accepted_values_stg_jobs_work_type__On_site__Hybrid__Remote ....... [PASS in 2.19s]
+12:46:03  8 of 48 START test not_null_bridge_job_skills_skill_id ......................... [RUN]
+12:46:03  7 of 48 PASS not_null_bridge_job_skills_job_id ................................. [PASS in 1.96s]
+12:46:03  9 of 48 START test not_null_dim_company_company_id ............................. [RUN]
+12:46:03  5 of 48 PASS accepted_values_stg_jobs_experience_level__junior__mid__senior__executive  [PASS in 2.64s]
+12:46:03  10 of 48 START test not_null_dim_company_company_name .......................... [RUN]
+12:46:05  3 of 48 PASS accepted_values_mart_job_metrics_demand_category__High_Demand__Medium_Demand__Niche  [PASS in 6.50s]
+12:46:05  11 of 48 START test not_null_dim_date_date_id .................................. [RUN]
+12:46:05  8 of 48 PASS not_null_bridge_job_skills_skill_id ............................... [PASS in 1.88s]
+12:46:05  9 of 48 PASS not_null_dim_company_company_id ................................... [PASS in 1.80s]
+12:46:05  12 of 48 START test not_null_dim_date_full_date ................................ [RUN]
+12:46:05  13 of 48 START test not_null_dim_job_job_id .................................... [RUN]
+12:46:05  10 of 48 PASS not_null_dim_company_company_name ................................ [PASS in 1.91s]
+12:46:05  14 of 48 START test not_null_dim_job_job_title ................................. [RUN]
+12:46:07  11 of 48 PASS not_null_dim_date_date_id ........................................ [PASS in 1.87s]
+12:46:07  15 of 48 START test not_null_dim_location_city ................................. [RUN]
+12:46:07  12 of 48 PASS not_null_dim_date_full_date ...................................... [PASS in 1.78s]
+12:46:07  16 of 48 START test not_null_dim_location_country .............................. [RUN]
+12:46:07  13 of 48 PASS not_null_dim_job_job_id .......................................... [PASS in 1.95s]
+12:46:07  17 of 48 START test not_null_dim_location_location_id .......................... [RUN]
+12:46:08  14 of 48 PASS not_null_dim_job_job_title ....................................... [PASS in 2.67s]
+12:46:08  18 of 48 START test not_null_dim_skills_skill_id ............................... [RUN]
+12:46:09  15 of 48 PASS not_null_dim_location_city ....................................... [PASS in 1.92s]
+12:46:09  19 of 48 START test not_null_dim_skills_skill_name ............................. [RUN]
+12:46:10  16 of 48 PASS not_null_dim_location_country .................................... [PASS in 2.70s]
+12:46:10  20 of 48 START test not_null_fact_jobs_company_id .............................. [RUN]
+12:46:10  18 of 48 PASS not_null_dim_skills_skill_id ..................................... [PASS in 2.02s]
+12:46:10  21 of 48 START test not_null_fact_jobs_date_id ................................. [RUN]
+12:46:10  17 of 48 PASS not_null_dim_location_location_id ................................ [PASS in 3.27s]
+12:46:10  22 of 48 START test not_null_fact_jobs_fact_id ................................. [RUN]
+12:46:10  19 of 48 PASS not_null_dim_skills_skill_name ................................... [PASS in 1.80s]
+12:46:11  23 of 48 START test not_null_fact_jobs_job_id .................................. [RUN]
+12:46:11  20 of 48 PASS not_null_fact_jobs_company_id .................................... [PASS in 1.86s]
+12:46:11  24 of 48 START test not_null_fact_jobs_location_id ............................. [RUN]
+12:46:12  21 of 48 PASS not_null_fact_jobs_date_id ....................................... [PASS in 1.91s]
+12:46:12  25 of 48 START test not_null_mart_job_metrics_jobs_requiring_skill ............. [RUN]
+12:46:12  22 of 48 PASS not_null_fact_jobs_fact_id ....................................... [PASS in 1.88s]
+12:46:12  26 of 48 START test not_null_mart_job_metrics_skill_demand_score ............... [RUN]
+12:46:12  23 of 48 PASS not_null_fact_jobs_job_id ........................................ [PASS in 1.82s]
+12:46:12  27 of 48 START test not_null_mart_job_metrics_skill_name ....................... [RUN]
+12:46:13  24 of 48 PASS not_null_fact_jobs_location_id ................................... [PASS in 1.95s]
+12:46:13  28 of 48 START test not_null_mart_job_metrics_skill_rarity_score ............... [RUN]
+12:46:14  25 of 48 PASS not_null_mart_job_metrics_jobs_requiring_skill ................... [PASS in 1.78s]
+12:46:14  29 of 48 START test not_null_stg_jobs_experience_level ......................... [RUN]
+12:46:14  26 of 48 PASS not_null_mart_job_metrics_skill_demand_score ..................... [PASS in 2.21s]
+12:46:14  27 of 48 PASS not_null_mart_job_metrics_skill_name ............................. [PASS in 2.03s]
+12:46:14  30 of 48 START test not_null_stg_jobs_job_id ................................... [RUN]
+12:46:14  31 of 48 START test not_null_stg_jobs_job_title ................................ [RUN]
+12:46:15  28 of 48 PASS not_null_mart_job_metrics_skill_rarity_score ..................... [PASS in 1.94s]
+12:46:15  32 of 48 START test not_null_stg_jobs_job_url .................................. [RUN]
+12:46:16  29 of 48 PASS not_null_stg_jobs_experience_level ............................... [PASS in 2.05s]
+12:46:16  33 of 48 START test not_null_stg_jobs_posted_date .............................. [RUN]
+12:46:16  31 of 48 PASS not_null_stg_jobs_job_title ...................................... [PASS in 1.75s]
+12:46:16  34 of 48 START test not_null_stg_jobs_scrape_date .............................. [RUN]
+12:46:16  30 of 48 PASS not_null_stg_jobs_job_id ......................................... [PASS in 1.80s]
+12:46:16  35 of 48 START test relationships_fact_jobs_company_id__company_id__ref_dim_company_  [RUN]
+12:46:17  32 of 48 PASS not_null_stg_jobs_job_url ........................................ [PASS in 1.70s]
+12:46:17  36 of 48 START test relationships_fact_jobs_job_id__job_id__ref_dim_job_ ....... [RUN]
+12:46:18  33 of 48 PASS not_null_stg_jobs_posted_date .................................... [PASS in 1.89s]
+12:46:18  37 of 48 START test relationships_fact_jobs_location_id__location_id__ref_dim_location_  [RUN]
+12:46:18  35 of 48 PASS relationships_fact_jobs_company_id__company_id__ref_dim_company_ . [PASS in 2.04s]
+12:46:18  34 of 48 PASS not_null_stg_jobs_scrape_date .................................... [PASS in 2.10s]
+12:46:18  38 of 48 START test unique_dim_company_company_id .............................. [RUN]
+12:46:18  39 of 48 START test unique_dim_date_date_id .................................... [RUN]
+12:46:20  39 of 48 PASS unique_dim_date_date_id .......................................... [PASS in 2.10s]
+12:46:20  40 of 48 START test unique_dim_date_full_date .................................. [RUN]
+12:46:20  38 of 48 PASS unique_dim_company_company_id .................................... [PASS in 2.15s]
+12:46:20  41 of 48 START test unique_dim_job_job_id ...................................... [RUN]
+12:46:21  37 of 48 PASS relationships_fact_jobs_location_id__location_id__ref_dim_location_  [PASS in 2.83s]
+12:46:21  42 of 48 START test unique_dim_location_location_id ............................ [RUN]
+12:46:21  36 of 48 PASS relationships_fact_jobs_job_id__job_id__ref_dim_job_ ............. [PASS in 3.59s]
+12:46:21  43 of 48 START test unique_dim_skills_skill_id ................................. [RUN]
+12:46:22  40 of 48 PASS unique_dim_date_full_date ........................................ [PASS in 1.83s]
+12:46:22  41 of 48 PASS unique_dim_job_job_id ............................................ [PASS in 1.78s]
+12:46:22  44 of 48 START test unique_dim_skills_skill_name ............................... [RUN]
+12:46:22  45 of 48 START test unique_fact_jobs_fact_id ................................... [RUN]
+12:46:22  42 of 48 PASS unique_dim_location_location_id .................................. [PASS in 1.89s]
+12:46:22  46 of 48 START test unique_mart_job_metrics_skill_name ......................... [RUN]
+12:46:23  43 of 48 PASS unique_dim_skills_skill_id ....................................... [PASS in 2.01s]
+12:46:23  47 of 48 START test unique_stg_jobs_job_id ..................................... [RUN]
+12:46:24  45 of 48 PASS unique_fact_jobs_fact_id ......................................... [PASS in 1.80s]
+12:46:24  48 of 48 START test unique_stg_jobs_job_url .................................... [RUN]
+12:46:24  44 of 48 PASS unique_dim_skills_skill_name ..................................... [PASS in 1.85s]
+12:46:24  46 of 48 PASS unique_mart_job_metrics_skill_name ............................... [PASS in 1.80s]
+12:46:25  47 of 48 PASS unique_stg_jobs_job_id ........................................... [PASS in 1.98s]
+12:46:26  48 of 48 PASS unique_stg_jobs_job_url .......................................... [PASS in 2.29s]
+12:46:26  
+12:46:26  Finished running 48 data tests in 0 hours 0 minutes and 31.08 seconds (31.08s).
+12:46:26  
+12:46:26  Completed successfully
+12:46:26  
+12:46:26  Done. PASS=48 WARN=0 ERROR=0 SKIP=0 TOTAL=48
+[2026-05-14T12:46:28.047+0000] {logging_mixin.py:188} INFO - ✔ dbt run and test completed successfully
+[2026-05-14T12:46:28.048+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-14T12:46:28.049+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-14T12:46:28.070+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=egypt_jobs_pipeline, task_id=run_dbt, run_id=manual__2026-05-14T10:49:05.963193+00:00, execution_date=20260514T104905, start_date=20260514T124508, end_date=20260514T124628
+[2026-05-14T12:46:28.268+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-05-14T12:46:28.285+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T12:46:28.287+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

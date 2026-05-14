@@ -1,0 +1,96 @@
+[2026-05-14T12:24:14.687+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-14T12:24:14.725+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.validate_and_clean manual__2026-05-14T10:24:15.138833+00:00 [queued]>
+[2026-05-14T12:24:14.734+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.validate_and_clean manual__2026-05-14T10:24:15.138833+00:00 [queued]>
+[2026-05-14T12:24:14.735+0000] {taskinstance.py:2306} INFO - Starting attempt 4 of 6
+[2026-05-14T12:24:14.750+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): validate_and_clean> on 2026-05-14 10:24:15.138833+00:00
+[2026-05-14T12:24:14.756+0000] {standard_task_runner.py:63} INFO - Started process 180 to run task
+[2026-05-14T12:24:14.760+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'egypt_jobs_pipeline', 'validate_and_clean', 'manual__2026-05-14T10:24:15.138833+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/egypt_jobs_pipeline.py', '--cfg-path', '/tmp/tmp4wtnm54n']
+[2026-05-14T12:24:14.764+0000] {standard_task_runner.py:91} INFO - Job 23: Subtask validate_and_clean
+[2026-05-14T12:24:14.826+0000] {task_command.py:426} INFO - Running <TaskInstance: egypt_jobs_pipeline.validate_and_clean manual__2026-05-14T10:24:15.138833+00:00 [running]> on host f6632be07a8e
+[2026-05-14T12:24:14.923+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sama' AIRFLOW_CTX_DAG_ID='egypt_jobs_pipeline' AIRFLOW_CTX_TASK_ID='validate_and_clean' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T10:24:15.138833+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T10:24:15.138833+00:00'
+[2026-05-14T12:24:14.924+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-14T12:24:15.553+0000] {clean.py:678} INFO - =======================================================
+[2026-05-14T12:24:15.553+0000] {clean.py:679} INFO - CLEANING PIPELINE STARTED
+[2026-05-14T12:24:15.554+0000] {clean.py:680} INFO - =======================================================
+[2026-05-14T12:24:15.554+0000] {clean.py:46} INFO - Loading raw JSON from /opt/***/project/data/raw/wuzzuf_combined.json
+[2026-05-14T12:24:15.561+0000] {clean.py:77} INFO - Loaded 152 jobs from JSON
+[2026-05-14T12:24:15.562+0000] {clean.py:123} INFO - Cleaning job titles...
+[2026-05-14T12:24:15.566+0000] {clean.py:136} INFO -   Dropped 0 null titles. Remaining: 152
+[2026-05-14T12:24:15.567+0000] {clean.py:155} INFO - Filtering Egypt-only jobs...
+[2026-05-14T12:24:15.569+0000] {clean.py:187} INFO -   Removed 15 non-Egypt jobs. Remaining: 137
+[2026-05-14T12:24:15.570+0000] {clean.py:206} INFO - Parsing experience years...
+[2026-05-14T12:24:15.572+0000] {clean.py:233} INFO -   min_experience nulls: 2 / 137
+[2026-05-14T12:24:15.572+0000] {clean.py:253} INFO - Classifying experience levels...
+[2026-05-14T12:24:15.575+0000] {clean.py:285} INFO -   Distribution:
+experience_level
+senior       46
+junior       42
+mid          41
+executive     8
+[2026-05-14T12:24:15.576+0000] {clean.py:307} INFO - Converting posted dates...
+[2026-05-14T12:24:15.576+0000] {clean.py:317} INFO -   Scrape date: 2026-05-14
+[2026-05-14T12:24:15.584+0000] {clean.py:349} INFO -   Date range: 2026-03-15 00:00:00 → 2026-05-14 00:00:00
+[2026-05-14T12:24:15.585+0000] {clean.py:350} INFO -   Null dates: 0
+[2026-05-14T12:24:15.585+0000] {clean.py:371} INFO - Cleaning skills lists...
+[2026-05-14T12:24:15.588+0000] {clean.py:419} INFO -   Empty skills lists: 0 / 137
+[2026-05-14T12:24:15.588+0000] {clean.py:437} INFO - Classifying job categories...
+[2026-05-14T12:24:15.591+0000] {clean.py:487} INFO -   Distribution:
+job_category
+other                   41
+backend developer       11
+ai engineer             11
+business analyst        11
+software engineer       10
+engineering              9
+database & erp           8
+data analyst             7
+finance & accounting     6
+data scientist           6
+[2026-05-14T12:24:15.592+0000] {clean.py:488} INFO -   'other' count: 41
+[2026-05-14T12:24:15.592+0000] {clean.py:511} INFO - Classifying company types...
+[2026-05-14T12:24:15.595+0000] {clean.py:573} INFO -   Distribution:
+company_type
+Corporate     103
+Startup        25
+MNC             8
+Government      1
+[2026-05-14T12:24:15.597+0000] {clean.py:594} INFO - Finalizing dataframe...
+[2026-05-14T12:24:15.600+0000] {clean.py:618} INFO -   Removed 0 duplicates. Final rows: 137
+[2026-05-14T12:24:15.601+0000] {clean.py:619} INFO -   Final columns: ['job_title', 'company_name', 'job_type', 'skills_list', 'job_category', 'posted_date', 'job_url', 'city', 'work_type', 'min_experience', 'max_experience', 'experience_level', 'scrape_date', 'company_type']
+[2026-05-14T12:24:15.681+0000] {clean.py:647} INFO - Saved Parquet → /opt/***/project/data/processed/jobs_cleaned.parquet (0.02 MB, 137 rows)
+[2026-05-14T12:24:15.682+0000] {clean.py:695} INFO - =======================================================
+[2026-05-14T12:24:15.682+0000] {clean.py:696} INFO - CLEANING PIPELINE COMPLETE — 137 clean jobs
+[2026-05-14T12:24:15.682+0000] {clean.py:697} INFO - =======================================================
+[2026-05-14T12:24:15.683+0000] {validate.py:42} INFO - =======================================================
+[2026-05-14T12:24:15.683+0000] {validate.py:43} INFO - VALIDATION STARTED
+[2026-05-14T12:24:15.683+0000] {validate.py:44} INFO - =======================================================
+[2026-05-14T12:24:15.721+0000] {validate.py:58} INFO - Loaded 137 rows from /opt/***/project/data/processed/jobs_cleaned.parquet
+[2026-05-14T12:24:15.721+0000] {validate.py:70} INFO - ✅ Row count: 137 (expected 10–10000)
+[2026-05-14T12:24:15.722+0000] {validate.py:84} INFO - ✅ All 14 required columns present
+[2026-05-14T12:24:15.722+0000] {validate.py:100} INFO - ✅ No nulls in 'job_title'
+[2026-05-14T12:24:15.723+0000] {validate.py:100} INFO - ✅ No nulls in 'job_url'
+[2026-05-14T12:24:15.723+0000] {validate.py:100} INFO - ✅ No nulls in 'experience_level'
+[2026-05-14T12:24:15.724+0000] {validate.py:100} INFO - ✅ No nulls in 'posted_date'
+[2026-05-14T12:24:15.725+0000] {validate.py:100} INFO - ✅ No nulls in 'scrape_date'
+[2026-05-14T12:24:15.725+0000] {validate.py:100} INFO - ✅ No nulls in 'company_type'
+[2026-05-14T12:24:15.725+0000] {validate.py:112} INFO - ✅ job_url is unique across all 137 rows
+[2026-05-14T12:24:15.727+0000] {validate.py:122} INFO - ✅ experience_level values all valid: {'senior': 46, 'junior': 42, 'mid': 41, 'executive': 8}
+[2026-05-14T12:24:15.728+0000] {validate.py:132} INFO - ✅ work_type values all valid: {'On-site': 137}
+[2026-05-14T12:24:15.730+0000] {validate.py:142} INFO - ✅ company_type values all valid: {'Corporate': 103, 'Startup': 25, 'MNC': 8, 'Government': 1}
+[2026-05-14T12:24:15.731+0000] {validate.py:154} INFO - ✅ All job_urls are valid Wuzzuf URLs
+[2026-05-14T12:24:15.732+0000] {validate.py:175} INFO - ✅ Date range valid: 2026-03-15 → 2026-05-14
+[2026-05-14T12:24:15.733+0000] {validate.py:194} INFO - ✅ Skills present: 137/137 jobs have skills
+[2026-05-14T12:24:15.734+0000] {validate.py:216} INFO - -------------------------------------------------------
+[2026-05-14T12:24:15.735+0000] {validate.py:217} INFO - Checks passed : 15
+[2026-05-14T12:24:15.735+0000] {validate.py:218} INFO - Checks failed : 0
+[2026-05-14T12:24:15.736+0000] {validate.py:219} INFO - Report saved  → data/validation_reports/validation_20260514_122415.json
+[2026-05-14T12:24:15.736+0000] {validate.py:220} INFO - -------------------------------------------------------
+[2026-05-14T12:24:15.737+0000] {validate.py:231} INFO - VALIDATION PASSED ✅
+[2026-05-14T12:24:15.737+0000] {validate.py:232} INFO - =======================================================
+[2026-05-14T12:24:15.752+0000] {logging_mixin.py:188} INFO - ✔ Validation passed — 137 clean jobs
+[2026-05-14T12:24:15.753+0000] {python.py:237} INFO - Done. Returned value was: 137
+[2026-05-14T12:24:15.754+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-14T12:24:15.773+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=egypt_jobs_pipeline, task_id=validate_and_clean, run_id=manual__2026-05-14T10:24:15.138833+00:00, execution_date=20260514T102415, start_date=20260514T122414, end_date=20260514T122415
+[2026-05-14T12:24:15.818+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-05-14T12:24:15.843+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T12:24:15.847+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -17,6 +17,59 @@ from pathlib import Path
 
 import pandas as pd
 
+# ── Tech Skills Allowlist ─────────────────────────────────────────────────────
+# WHY AN ALLOWLIST NOT JUST A DENYLIST:
+#   A denylist needs constant maintenance as new noise appears.
+#   An allowlist defines what we WANT — anything not in it gets dropped.
+#   We use a "contains" check (not exact match) so "Apache Spark" matches "spark".
+
+TECH_SKILLS_VOCAB = {
+    # Languages
+    "python", "sql", "r ", " r,", "java", "scala", "go ", "golang", "rust",
+    "c++", "c#", ".net", "php", "ruby", "bash", "shell", "powershell",
+    "typescript", "javascript", "kotlin", "swift", "matlab", "julia",
+
+    # Data & Analytics
+    "pandas", "numpy", "spark", "hadoop", "kafka", "airflow", "dbt",
+    "snowflake", "redshift", "bigquery", "databricks", "hive", "presto",
+    "flink", "nifi", "luigi", "prefect", "dagster",
+
+    # Databases
+    "postgresql", "postgres", "mysql", "oracle", "sql server", "mongodb",
+    "redis", "cassandra", "elasticsearch", "neo4j", "dynamodb", "sqlite",
+    "mssql", "mariadb", "cockroachdb",
+
+    # BI & Visualization
+    "power bi", "tableau", "looker", "qlik", "metabase", "superset",
+    "grafana", "kibana", "plotly", "matplotlib", "seaborn", "d3",
+
+    # Cloud & DevOps
+    "aws", "azure", "gcp", "google cloud", "docker", "kubernetes", "k8s",
+    "terraform", "ansible", "jenkins", "gitlab", "github actions", "ci/cd",
+    "linux", "ubuntu", "helm", "prometheus", "datadog", "cloudwatch",
+
+    # ML & AI
+    "machine learning", "deep learning", "nlp", "computer vision",
+    "tensorflow", "pytorch", "keras", "scikit", "sklearn", "xgboost",
+    "lightgbm", "hugging face", "transformers", "llm", "openai", "langchain",
+    "mlflow", "kubeflow", "sagemaker", "vertex ai", "feature store",
+    "reinforcement learning", "neural network", "bert", "gpt",
+
+    # ETL & Engineering
+    "etl", "elt", "data pipeline", "data warehouse", "data lake",
+    "data lakehouse", "data modeling", "data mesh", "data governance",
+    "data quality", "great expectations", "dbt", "fivetran", "stitch",
+    "airbyte", "talend", "informatica", "ssis", "pentaho",
+
+    # Software Engineering
+    "rest api", "graphql", "microservices", "api", "git", "agile", "scrum",
+    "django", "flask", "fastapi", "spring", "laravel", "node", "react",
+    "angular", "vue", "flutter", "android", "ios", "docker", "oauth",
+
+    # ERP & Enterprise (keep only tech-adjacent ones)
+    "sap", "odoo", "dynamics", "erp", "crm", "salesforce", "servicenow",
+}
+
 # ── Logging ───────────────────────────────────────────────────────────────────
 # WHY LOGGING NOT PRINT:
 #   Airflow captures logging output and shows it in its UI per task.
@@ -357,16 +410,18 @@ def convert_posted_date(df: pd.DataFrame) -> pd.DataFrame:
 
 def clean_skills_list(df: pd.DataFrame) -> pd.DataFrame:
     """
-    WHAT: Cleans the skills list for each job.
+    WHAT: Cleans the skills list — removes noise AND filters to tech domain only.
 
-    WHY:
-        Raw skills contain:
-        - Full sentences ("Strong problem-solving mindset...")
-        - Job titles as skills ("BI Engineer - SQL / PYTHON")
-        - Noise/soft skills ("English", "Communication")
-        - Empty lists []
+    WHY TWO-STAGE FILTERING:
+        Stage 1 (existing): Remove sentences, soft skills, job titles.
+        Stage 2 (new): Keep only skills that match TECH_SKILLS_VOCAB.
+        This eliminates "Stakeout", "QuickBooks", "Calendar Management"
+        while keeping "Python", "Power BI", "Apache Spark".
 
-        We keep only genuine technical skills under 50 chars.
+    WHY CONTAINS NOT EXACT MATCH:
+        "Apache Spark" should match "spark".
+        "scikit-learn" should match "scikit".
+        Exact match would miss these compound skill names.
     """
     logger.info("Cleaning skills lists...")
 
@@ -379,8 +434,12 @@ def clean_skills_list(df: pd.DataFrame) -> pd.DataFrame:
 
     title_keywords = ["junior", "senior", "middle", "engineer", "developer", "analyst", "manager"]
 
+    def is_tech_skill(skill: str) -> bool:
+        """Returns True if skill matches any entry in TECH_SKILLS_VOCAB."""
+        skill_lower = skill.lower()
+        return any(vocab_term in skill_lower for vocab_term in TECH_SKILLS_VOCAB)
+
     def clean_skills(raw):
-        # Handle both list and string representations
         if isinstance(raw, list):
             skills = raw
         else:
@@ -393,20 +452,19 @@ def clean_skills_list(df: pd.DataFrame) -> pd.DataFrame:
         for skill in skills:
             skill = str(skill).strip()
 
-            # Drop if too long (it's a sentence not a skill)
+            # Stage 1 — structural filters (same as before)
             if len(skill) > 50:
                 continue
-
-            # Drop if contains sentence markers
             if any(m in skill for m in ["✔", "•", "·", "–", "->", " and ", " who "]):
                 continue
-
-            # Drop noise/soft skills
             if skill.lower() in noise_skills:
                 continue
-
-            # Drop if it looks like a job title (2+ title keywords)
             if sum(1 for k in title_keywords if k in skill.lower()) >= 2:
+                continue
+
+            # Stage 2 — tech domain filter (new)
+            if not is_tech_skill(skill):
+                logger.debug(f"  Dropped non-tech skill: {skill!r}")
                 continue
 
             cleaned.append(skill)
@@ -416,10 +474,8 @@ def clean_skills_list(df: pd.DataFrame) -> pd.DataFrame:
     df["skills_list"] = df["skills_list"].apply(clean_skills)
 
     empty = df["skills_list"].apply(lambda x: len(x) == 0).sum()
-    logger.info(f"  Empty skills lists: {empty} / {len(df)}")
+    logger.info(f"  Empty skills lists after tech filter: {empty} / {len(df)}")
     return df
-
-
 # ══════════════════════════════════════════════════════════════════════════════
 # STEP 7 — CLASSIFY JOB CATEGORY
 # ══════════════════════════════════════════════════════════════════════════════

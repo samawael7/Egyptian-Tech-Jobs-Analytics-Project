@@ -1,0 +1,100 @@
+[2026-05-14T11:49:24.955+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-14T11:49:25.081+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.validate_and_clean manual__2026-05-14T10:49:05.963193+00:00 [queued]>
+[2026-05-14T11:49:25.104+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.validate_and_clean manual__2026-05-14T10:49:05.963193+00:00 [queued]>
+[2026-05-14T11:49:25.105+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-05-14T11:49:25.169+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): validate_and_clean> on 2026-05-14 10:49:05.963193+00:00
+[2026-05-14T11:49:25.183+0000] {standard_task_runner.py:63} INFO - Started process 4184 to run task
+[2026-05-14T11:49:25.194+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'egypt_jobs_pipeline', 'validate_and_clean', 'manual__2026-05-14T10:49:05.963193+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/egypt_jobs_pipeline.py', '--cfg-path', '/tmp/tmp30ww1ca5']
+[2026-05-14T11:49:25.204+0000] {standard_task_runner.py:91} INFO - Job 15: Subtask validate_and_clean
+[2026-05-14T11:49:25.420+0000] {task_command.py:426} INFO - Running <TaskInstance: egypt_jobs_pipeline.validate_and_clean manual__2026-05-14T10:49:05.963193+00:00 [running]> on host a867784e3c0e
+[2026-05-14T11:49:28.862+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sama' AIRFLOW_CTX_DAG_ID='egypt_jobs_pipeline' AIRFLOW_CTX_TASK_ID='validate_and_clean' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T10:49:05.963193+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T10:49:05.963193+00:00'
+[2026-05-14T11:49:28.864+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-14T11:49:55.325+0000] {clean.py:678} INFO - =======================================================
+[2026-05-14T11:49:55.326+0000] {clean.py:679} INFO - CLEANING PIPELINE STARTED
+[2026-05-14T11:49:55.327+0000] {clean.py:680} INFO - =======================================================
+[2026-05-14T11:49:55.328+0000] {clean.py:46} INFO - Loading raw JSON from /opt/***/project/data/raw/wuzzuf_combined.json
+[2026-05-14T11:49:55.366+0000] {clean.py:77} INFO - Loaded 152 jobs from JSON
+[2026-05-14T11:49:55.368+0000] {clean.py:123} INFO - Cleaning job titles...
+[2026-05-14T11:49:55.409+0000] {clean.py:136} INFO -   Dropped 0 null titles. Remaining: 152
+[2026-05-14T11:49:55.410+0000] {clean.py:155} INFO - Filtering Egypt-only jobs...
+[2026-05-14T11:49:55.433+0000] {clean.py:187} INFO -   Removed 15 non-Egypt jobs. Remaining: 137
+[2026-05-14T11:49:55.435+0000] {clean.py:206} INFO - Parsing experience years...
+[2026-05-14T11:49:55.444+0000] {clean.py:233} INFO -   min_experience nulls: 2 / 137
+[2026-05-14T11:49:55.445+0000] {clean.py:253} INFO - Classifying experience levels...
+[2026-05-14T11:49:55.463+0000] {clean.py:285} INFO -   Distribution:
+experience_level
+senior       46
+junior       42
+mid          41
+executive     8
+[2026-05-14T11:49:55.464+0000] {clean.py:307} INFO - Converting posted dates...
+[2026-05-14T11:49:55.466+0000] {clean.py:317} INFO -   Scrape date: 2026-05-14
+[2026-05-14T11:49:55.495+0000] {clean.py:349} INFO -   Date range: 2026-03-15 00:00:00 → 2026-05-14 00:00:00
+[2026-05-14T11:49:55.497+0000] {clean.py:350} INFO -   Null dates: 0
+[2026-05-14T11:49:55.498+0000] {clean.py:371} INFO - Cleaning skills lists...
+[2026-05-14T11:49:55.510+0000] {clean.py:419} INFO -   Empty skills lists: 0 / 137
+[2026-05-14T11:49:55.516+0000] {clean.py:437} INFO - Classifying job categories...
+[2026-05-14T11:49:55.528+0000] {clean.py:487} INFO -   Distribution:
+job_category
+other                   41
+backend developer       11
+ai engineer             11
+business analyst        11
+software engineer       10
+engineering              9
+database & erp           8
+data analyst             7
+finance & accounting     6
+data scientist           6
+[2026-05-14T11:49:55.530+0000] {clean.py:488} INFO -   'other' count: 41
+[2026-05-14T11:49:55.531+0000] {clean.py:511} INFO - Classifying company types...
+[2026-05-14T11:49:55.540+0000] {clean.py:573} INFO -   Distribution:
+company_type
+Corporate     103
+Startup        25
+MNC             8
+Government      1
+[2026-05-14T11:49:55.547+0000] {clean.py:594} INFO - Finalizing dataframe...
+[2026-05-14T11:49:55.567+0000] {clean.py:618} INFO -   Removed 0 duplicates. Final rows: 137
+[2026-05-14T11:49:55.569+0000] {clean.py:619} INFO -   Final columns: ['job_title', 'company_name', 'job_type', 'skills_list', 'job_category', 'posted_date', 'job_url', 'city', 'work_type', 'min_experience', 'max_experience', 'experience_level', 'scrape_date', 'company_type']
+[2026-05-14T11:49:55.941+0000] {clean.py:647} INFO - Saved Parquet → /opt/***/project/data/processed/jobs_cleaned.parquet (0.02 MB, 137 rows)
+[2026-05-14T11:49:55.942+0000] {clean.py:695} INFO - =======================================================
+[2026-05-14T11:49:55.943+0000] {clean.py:696} INFO - CLEANING PIPELINE COMPLETE — 137 clean jobs
+[2026-05-14T11:49:55.944+0000] {clean.py:697} INFO - =======================================================
+[2026-05-14T11:49:55.945+0000] {validate.py:70} INFO - =======================================================
+[2026-05-14T11:49:55.946+0000] {validate.py:71} INFO - VALIDATION STARTED
+[2026-05-14T11:49:55.947+0000] {validate.py:72} INFO - =======================================================
+[2026-05-14T11:49:56.083+0000] {validate.py:84} INFO - Loaded 137 rows from /opt/***/project/data/processed/jobs_cleaned.parquet
+[2026-05-14T11:49:56.118+0000] {context_factory.py:390} INFO - Could not find local file-backed GX project
+[2026-05-14T11:49:56.125+0000] {base.py:2153} INFO - Created temporary directory '/tmp/tmp91vtzf3k' for ephemeral docs site
+[2026-05-14T11:49:56.129+0000] {config.py:187} INFO - Loading 'datasources' ->
+[]
+[2026-05-14T11:49:56.200+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-14T11:49:56.202+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/egypt_jobs_pipeline.py", line 68, in validate_task
+    run_validation(parquet_path=output_path)
+  File "/opt/airflow/project/pipeline/validate.py", line 91, in run_validation
+    datasource = context.data_sources.add_pandas("pipeline_datasource")
+                 ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EphemeralDataContext' object has no attribute 'data_sources'
+[2026-05-14T11:49:56.329+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=egypt_jobs_pipeline, task_id=validate_and_clean, run_id=manual__2026-05-14T10:49:05.963193+00:00, execution_date=20260514T104905, start_date=20260514T114925, end_date=20260514T114956
+[2026-05-14T11:49:56.412+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 15 for task validate_and_clean ('EphemeralDataContext' object has no attribute 'data_sources'; 4184)
+[2026-05-14T11:49:56.752+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-05-14T11:49:57.571+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T11:49:57.575+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

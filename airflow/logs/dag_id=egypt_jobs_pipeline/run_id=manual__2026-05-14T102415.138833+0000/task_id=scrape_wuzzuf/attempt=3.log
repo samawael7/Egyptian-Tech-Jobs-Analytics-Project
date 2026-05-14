@@ -1,0 +1,377 @@
+[2026-05-14T10:47:46.701+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-14T10:47:46.836+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.scrape_wuzzuf manual__2026-05-14T10:24:15.138833+00:00 [queued]>
+[2026-05-14T10:47:46.864+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.scrape_wuzzuf manual__2026-05-14T10:24:15.138833+00:00 [queued]>
+[2026-05-14T10:47:46.872+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 3
+[2026-05-14T10:47:46.926+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): scrape_wuzzuf> on 2026-05-14 10:24:15.138833+00:00
+[2026-05-14T10:47:46.940+0000] {standard_task_runner.py:63} INFO - Started process 168 to run task
+[2026-05-14T10:47:46.950+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'egypt_jobs_pipeline', 'scrape_wuzzuf', 'manual__2026-05-14T10:24:15.138833+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/egypt_jobs_pipeline.py', '--cfg-path', '/tmp/tmpu03x8l0e']
+[2026-05-14T10:47:46.961+0000] {standard_task_runner.py:91} INFO - Job 12: Subtask scrape_wuzzuf
+[2026-05-14T10:47:47.144+0000] {task_command.py:426} INFO - Running <TaskInstance: egypt_jobs_pipeline.scrape_wuzzuf manual__2026-05-14T10:24:15.138833+00:00 [running]> on host a867784e3c0e
+[2026-05-14T10:47:47.799+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sama' AIRFLOW_CTX_DAG_ID='egypt_jobs_pipeline' AIRFLOW_CTX_TASK_ID='scrape_wuzzuf' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T10:24:15.138833+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T10:24:15.138833+00:00'
+[2026-05-14T10:47:47.801+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-14T10:47:48.132+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T10:47:48.133+0000] {wuzzuf_scraper.py:622} INFO - Keyword 1/21: 'data engineer'
+[2026-05-14T10:47:48.134+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T10:47:50.563+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'data engineer' (up to 5 pages)
+[2026-05-14T10:47:50.564+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T10:47:59.388+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T10:51:48.368+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 14
+[2026-05-14T10:51:50.370+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T10:52:01.062+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T10:54:37.013+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 14 duplicate(s)
+[2026-05-14T10:54:37.015+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T10:54:37.017+0000] {wuzzuf_scraper.py:515} INFO - Done: 'data engineer' → 14 relevant jobs
+[2026-05-14T10:54:37.019+0000] {wuzzuf_scraper.py:642} INFO - 'data engineer': 14 jobs (14 new unique)
+[2026-05-14T10:54:37.075+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_data_engineer.json → updated=13 appended=1 total=32
+[2026-05-14T10:54:40.594+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T10:54:40.596+0000] {wuzzuf_scraper.py:622} INFO - Keyword 2/21: 'data analyst'
+[2026-05-14T10:54:40.597+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T10:54:43.923+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'data analyst' (up to 5 pages)
+[2026-05-14T10:54:43.924+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T10:55:01.017+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T10:58:18.495+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 15
+[2026-05-14T10:58:20.497+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T10:58:29.541+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:00:18.465+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 15 duplicate(s)
+[2026-05-14T11:00:18.467+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:00:18.468+0000] {wuzzuf_scraper.py:515} INFO - Done: 'data analyst' → 15 relevant jobs
+[2026-05-14T11:00:18.469+0000] {wuzzuf_scraper.py:642} INFO - 'data analyst': 15 jobs (15 new unique)
+[2026-05-14T11:00:18.519+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_data_analyst.json → updated=13 appended=2 total=32
+[2026-05-14T11:00:21.728+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:00:21.729+0000] {wuzzuf_scraper.py:622} INFO - Keyword 3/21: 'data scientist'
+[2026-05-14T11:00:21.730+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:00:22.652+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'data scientist' (up to 5 pages)
+[2026-05-14T11:00:22.653+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:00:31.262+0000] {wuzzuf_scraper.py:450} INFO -   Found 11 cards on page
+[2026-05-14T11:01:46.518+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 10
+[2026-05-14T11:01:48.520+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:01:53.095+0000] {wuzzuf_scraper.py:450} INFO -   Found 11 cards on page
+[2026-05-14T11:03:01.135+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 10 duplicate(s)
+[2026-05-14T11:03:01.136+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:03:01.137+0000] {wuzzuf_scraper.py:515} INFO - Done: 'data scientist' → 10 relevant jobs
+[2026-05-14T11:03:01.137+0000] {wuzzuf_scraper.py:642} INFO - 'data scientist': 10 jobs (9 new unique)
+[2026-05-14T11:03:01.167+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_data_scientist.json → updated=10 appended=0 total=10
+[2026-05-14T11:03:04.341+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:03:04.342+0000] {wuzzuf_scraper.py:622} INFO - Keyword 4/21: 'analytics engineer'
+[2026-05-14T11:03:04.343+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:03:05.464+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'analytics engineer' (up to 5 pages)
+[2026-05-14T11:03:05.465+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:03:20.532+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 1: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=analytics%20engineer&a%5Bpage%5D=1", waiting until "load"
+
+[2026-05-14T11:03:20.534+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 1 — failed to load
+[2026-05-14T11:03:20.536+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:03:35.610+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 2: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=analytics%20engineer&a%5Bpage%5D=2", waiting until "load"
+
+[2026-05-14T11:03:35.611+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 2 — failed to load
+[2026-05-14T11:03:35.613+0000] {wuzzuf_scraper.py:483} INFO -   Page 3/5
+[2026-05-14T11:03:45.432+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:05:35.591+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 14
+[2026-05-14T11:05:37.592+0000] {wuzzuf_scraper.py:483} INFO -   Page 4/5
+[2026-05-14T11:05:39.781+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:07:20.820+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 14 duplicate(s)
+[2026-05-14T11:07:20.822+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:07:20.823+0000] {wuzzuf_scraper.py:515} INFO - Done: 'analytics engineer' → 14 relevant jobs
+[2026-05-14T11:07:20.824+0000] {wuzzuf_scraper.py:642} INFO - 'analytics engineer': 14 jobs (14 new unique)
+[2026-05-14T11:07:20.854+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_analytics_engineer.json → updated=11 appended=3 total=17
+[2026-05-14T11:07:24.077+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:07:24.078+0000] {wuzzuf_scraper.py:622} INFO - Keyword 5/21: 'business intelligence'
+[2026-05-14T11:07:24.079+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:07:25.125+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'business intelligence' (up to 5 pages)
+[2026-05-14T11:07:25.126+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:07:40.173+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 1: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=business%20intelligence&a%5Bpage%5D=1", waiting until "load"
+
+[2026-05-14T11:07:40.174+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 1 — failed to load
+[2026-05-14T11:07:40.175+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:07:52.930+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:09:16.728+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 12
+[2026-05-14T11:09:18.729+0000] {wuzzuf_scraper.py:483} INFO -   Page 3/5
+[2026-05-14T11:09:25.394+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:10:49.642+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 12 duplicate(s)
+[2026-05-14T11:10:49.645+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:10:49.645+0000] {wuzzuf_scraper.py:515} INFO - Done: 'business intelligence' → 12 relevant jobs
+[2026-05-14T11:10:49.646+0000] {wuzzuf_scraper.py:642} INFO - 'business intelligence': 12 jobs (11 new unique)
+[2026-05-14T11:10:49.690+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_business_intelligence.json → updated=11 appended=1 total=13
+[2026-05-14T11:10:52.985+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:10:52.986+0000] {wuzzuf_scraper.py:622} INFO - Keyword 6/21: 'power bi developer'
+[2026-05-14T11:10:52.987+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:10:53.953+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'power bi developer' (up to 5 pages)
+[2026-05-14T11:10:53.954+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:11:06.183+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:12:18.490+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 11
+[2026-05-14T11:12:20.491+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:12:24.286+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:13:31.608+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 11 duplicate(s)
+[2026-05-14T11:13:31.610+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:13:31.611+0000] {wuzzuf_scraper.py:515} INFO - Done: 'power bi developer' → 11 relevant jobs
+[2026-05-14T11:13:31.612+0000] {wuzzuf_scraper.py:642} INFO - 'power bi developer': 11 jobs (6 new unique)
+[2026-05-14T11:13:31.642+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_power_bi_developer.json → updated=11 appended=0 total=12
+[2026-05-14T11:13:34.854+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:13:34.855+0000] {wuzzuf_scraper.py:622} INFO - Keyword 7/21: 'tableau developer'
+[2026-05-14T11:13:34.856+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:13:35.784+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'tableau developer' (up to 5 pages)
+[2026-05-14T11:13:35.785+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:13:42.399+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:14:49.056+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 9
+[2026-05-14T11:14:51.059+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:14:57.900+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:15:55.130+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 9 duplicate(s)
+[2026-05-14T11:15:55.131+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:15:55.132+0000] {wuzzuf_scraper.py:515} INFO - Done: 'tableau developer' → 9 relevant jobs
+[2026-05-14T11:15:55.133+0000] {wuzzuf_scraper.py:642} INFO - 'tableau developer': 9 jobs (4 new unique)
+[2026-05-14T11:15:55.166+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_tableau_developer.json → updated=9 appended=0 total=9
+[2026-05-14T11:15:58.437+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:15:58.439+0000] {wuzzuf_scraper.py:622} INFO - Keyword 8/21: 'bi developer'
+[2026-05-14T11:15:58.441+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:15:59.114+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'bi developer' (up to 5 pages)
+[2026-05-14T11:15:59.115+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:16:07.420+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:17:07.611+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 11
+[2026-05-14T11:17:09.612+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:17:13.613+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:18:33.634+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 11 duplicate(s)
+[2026-05-14T11:18:33.636+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:18:33.637+0000] {wuzzuf_scraper.py:515} INFO - Done: 'bi developer' → 11 relevant jobs
+[2026-05-14T11:18:33.638+0000] {wuzzuf_scraper.py:642} INFO - 'bi developer': 11 jobs (1 new unique)
+[2026-05-14T11:18:33.669+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_bi_developer.json → updated=10 appended=1 total=13
+[2026-05-14T11:18:36.879+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:18:36.882+0000] {wuzzuf_scraper.py:622} INFO - Keyword 9/21: 'sql developer'
+[2026-05-14T11:18:36.886+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:18:37.919+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'sql developer' (up to 5 pages)
+[2026-05-14T11:18:37.920+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:18:45.566+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:20:19.967+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 15
+[2026-05-14T11:20:21.969+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:20:36.990+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 2: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=sql%20developer&a%5Bpage%5D=2", waiting until "load"
+
+[2026-05-14T11:20:36.991+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 2 — failed to load
+[2026-05-14T11:20:36.992+0000] {wuzzuf_scraper.py:483} INFO -   Page 3/5
+[2026-05-14T11:20:52.043+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 3: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=sql%20developer&a%5Bpage%5D=3", waiting until "load"
+
+[2026-05-14T11:20:52.044+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 3 — failed to load
+[2026-05-14T11:20:52.044+0000] {wuzzuf_scraper.py:483} INFO -   Page 4/5
+[2026-05-14T11:21:07.092+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 4: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=sql%20developer&a%5Bpage%5D=4", waiting until "load"
+
+[2026-05-14T11:21:07.098+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 4 — failed to load
+[2026-05-14T11:21:07.100+0000] {wuzzuf_scraper.py:483} INFO -   Page 5/5
+[2026-05-14T11:21:22.187+0000] {wuzzuf_scraper.py:264} ERROR - Failed to load page 5: Page.goto: Timeout 15000ms exceeded.
+Call log:
+navigating to "https://wuzzuf.net/search/jobs/?q=sql%20developer&a%5Bpage%5D=5", waiting until "load"
+
+[2026-05-14T11:21:22.189+0000] {wuzzuf_scraper.py:487} WARNING -   Skipping page 5 — failed to load
+[2026-05-14T11:21:22.191+0000] {wuzzuf_scraper.py:515} INFO - Done: 'sql developer' → 15 relevant jobs
+[2026-05-14T11:21:22.193+0000] {wuzzuf_scraper.py:642} INFO - 'sql developer': 15 jobs (14 new unique)
+[2026-05-14T11:21:22.239+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_sql_developer.json → updated=13 appended=2 total=17
+[2026-05-14T11:21:25.328+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:21:25.329+0000] {wuzzuf_scraper.py:622} INFO - Keyword 10/21: 'python developer'
+[2026-05-14T11:21:25.330+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:21:26.298+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'python developer' (up to 5 pages)
+[2026-05-14T11:21:26.300+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:21:34.081+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:23:09.191+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 15
+[2026-05-14T11:23:11.193+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:23:15.955+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:24:24.895+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 15 duplicate(s)
+[2026-05-14T11:24:24.897+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:24:24.898+0000] {wuzzuf_scraper.py:515} INFO - Done: 'python developer' → 15 relevant jobs
+[2026-05-14T11:24:24.900+0000] {wuzzuf_scraper.py:642} INFO - 'python developer': 15 jobs (10 new unique)
+[2026-05-14T11:24:24.958+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_python_developer.json → updated=15 appended=0 total=16
+[2026-05-14T11:24:28.282+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:24:28.283+0000] {wuzzuf_scraper.py:622} INFO - Keyword 11/21: 'etl developer'
+[2026-05-14T11:24:28.283+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:24:28.812+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'etl developer' (up to 5 pages)
+[2026-05-14T11:24:28.813+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:24:35.772+0000] {wuzzuf_scraper.py:450} INFO -   Found 10 cards on page
+[2026-05-14T11:25:19.811+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 9
+[2026-05-14T11:25:21.813+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:25:25.067+0000] {wuzzuf_scraper.py:450} INFO -   Found 10 cards on page
+[2026-05-14T11:26:05.862+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 9 duplicate(s)
+[2026-05-14T11:26:05.863+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:26:05.864+0000] {wuzzuf_scraper.py:515} INFO - Done: 'etl developer' → 9 relevant jobs
+[2026-05-14T11:26:05.865+0000] {wuzzuf_scraper.py:642} INFO - 'etl developer': 9 jobs (2 new unique)
+[2026-05-14T11:26:05.899+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_etl_developer.json → updated=9 appended=0 total=9
+[2026-05-14T11:26:09.083+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:26:09.084+0000] {wuzzuf_scraper.py:622} INFO - Keyword 12/21: 'data pipeline'
+[2026-05-14T11:26:09.085+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:26:09.623+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'data pipeline' (up to 5 pages)
+[2026-05-14T11:26:09.624+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:26:17.060+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:27:13.958+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 12
+[2026-05-14T11:27:15.959+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:27:19.285+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:28:12.798+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 12 duplicate(s)
+[2026-05-14T11:28:12.799+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:28:12.800+0000] {wuzzuf_scraper.py:515} INFO - Done: 'data pipeline' → 12 relevant jobs
+[2026-05-14T11:28:12.801+0000] {wuzzuf_scraper.py:642} INFO - 'data pipeline': 12 jobs (4 new unique)
+[2026-05-14T11:28:12.830+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_data_pipeline.json → updated=11 appended=1 total=13
+[2026-05-14T11:28:15.967+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:28:15.968+0000] {wuzzuf_scraper.py:622} INFO - Keyword 13/21: 'big data engineer'
+[2026-05-14T11:28:15.968+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:28:16.541+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'big data engineer' (up to 5 pages)
+[2026-05-14T11:28:16.542+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:28:23.506+0000] {wuzzuf_scraper.py:450} INFO -   Found 6 cards on page
+[2026-05-14T11:28:50.408+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 5
+[2026-05-14T11:28:52.409+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:28:56.118+0000] {wuzzuf_scraper.py:450} INFO -   Found 6 cards on page
+[2026-05-14T11:29:21.968+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 5 duplicate(s)
+[2026-05-14T11:29:21.970+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:29:21.972+0000] {wuzzuf_scraper.py:515} INFO - Done: 'big data engineer' → 5 relevant jobs
+[2026-05-14T11:29:21.973+0000] {wuzzuf_scraper.py:642} INFO - 'big data engineer': 5 jobs (1 new unique)
+[2026-05-14T11:29:22.001+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_big_data_engineer.json → updated=5 appended=0 total=5
+[2026-05-14T11:29:25.394+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:29:25.395+0000] {wuzzuf_scraper.py:622} INFO - Keyword 14/21: 'data warehouse engineer'
+[2026-05-14T11:29:25.396+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:29:26.070+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'data warehouse engineer' (up to 5 pages)
+[2026-05-14T11:29:26.071+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:29:33.787+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:30:28.725+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 11
+[2026-05-14T11:30:30.723+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:30:35.489+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:31:25.054+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 11 duplicate(s)
+[2026-05-14T11:31:25.055+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:31:25.055+0000] {wuzzuf_scraper.py:515} INFO - Done: 'data warehouse engineer' → 11 relevant jobs
+[2026-05-14T11:31:25.056+0000] {wuzzuf_scraper.py:642} INFO - 'data warehouse engineer': 11 jobs (6 new unique)
+[2026-05-14T11:31:25.079+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_data_warehouse_engineer.json → updated=9 appended=2 total=14
+[2026-05-14T11:31:28.285+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:31:28.287+0000] {wuzzuf_scraper.py:622} INFO - Keyword 15/21: 'cloud data engineer'
+[2026-05-14T11:31:28.288+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:31:28.749+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'cloud data engineer' (up to 5 pages)
+[2026-05-14T11:31:28.749+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:31:39.452+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:32:47.537+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 14
+[2026-05-14T11:32:49.538+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:32:52.708+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:34:01.112+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 14 duplicate(s)
+[2026-05-14T11:34:01.113+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:34:01.114+0000] {wuzzuf_scraper.py:515} INFO - Done: 'cloud data engineer' → 14 relevant jobs
+[2026-05-14T11:34:01.115+0000] {wuzzuf_scraper.py:642} INFO - 'cloud data engineer': 14 jobs (11 new unique)
+[2026-05-14T11:34:01.153+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_cloud_data_engineer.json → updated=11 appended=3 total=17
+[2026-05-14T11:34:04.335+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:34:04.336+0000] {wuzzuf_scraper.py:622} INFO - Keyword 16/21: 'snowflake developer'
+[2026-05-14T11:34:04.337+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:34:04.782+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'snowflake developer' (up to 5 pages)
+[2026-05-14T11:34:04.782+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:34:13.358+0000] {wuzzuf_scraper.py:450} INFO -   Found 3 cards on page
+[2026-05-14T11:34:29.190+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 3
+[2026-05-14T11:34:31.187+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:34:34.797+0000] {wuzzuf_scraper.py:450} INFO -   Found 3 cards on page
+[2026-05-14T11:34:47.391+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 3 duplicate(s)
+[2026-05-14T11:34:47.391+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:34:47.392+0000] {wuzzuf_scraper.py:515} INFO - Done: 'snowflake developer' → 3 relevant jobs
+[2026-05-14T11:34:47.393+0000] {wuzzuf_scraper.py:642} INFO - 'snowflake developer': 3 jobs (0 new unique)
+[2026-05-14T11:34:47.412+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_snowflake_developer.json → updated=3 appended=0 total=3
+[2026-05-14T11:34:50.655+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:34:50.657+0000] {wuzzuf_scraper.py:622} INFO - Keyword 17/21: 'machine learning engineer'
+[2026-05-14T11:34:50.659+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:34:51.151+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'machine learning engineer' (up to 5 pages)
+[2026-05-14T11:34:51.152+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:35:01.915+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:36:16.807+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 15
+[2026-05-14T11:36:18.809+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:36:21.815+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:37:39.985+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 15 duplicate(s)
+[2026-05-14T11:37:39.986+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:37:39.986+0000] {wuzzuf_scraper.py:515} INFO - Done: 'machine learning engineer' → 15 relevant jobs
+[2026-05-14T11:37:39.987+0000] {wuzzuf_scraper.py:642} INFO - 'machine learning engineer': 15 jobs (8 new unique)
+[2026-05-14T11:37:40.009+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_machine_learning_engineer.json → updated=14 appended=1 total=16
+[2026-05-14T11:37:43.198+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:37:43.200+0000] {wuzzuf_scraper.py:622} INFO - Keyword 18/21: 'ai engineer'
+[2026-05-14T11:37:43.202+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:37:43.688+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'ai engineer' (up to 5 pages)
+[2026-05-14T11:37:43.689+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:37:51.474+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:38:55.554+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 13
+[2026-05-14T11:38:57.555+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:39:01.574+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:40:05.069+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 13 duplicate(s)
+[2026-05-14T11:40:05.070+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:40:05.071+0000] {wuzzuf_scraper.py:515} INFO - Done: 'ai engineer' → 13 relevant jobs
+[2026-05-14T11:40:05.072+0000] {wuzzuf_scraper.py:642} INFO - 'ai engineer': 13 jobs (8 new unique)
+[2026-05-14T11:40:05.095+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_ai_engineer.json → updated=13 appended=0 total=13
+[2026-05-14T11:40:08.246+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:40:08.247+0000] {wuzzuf_scraper.py:622} INFO - Keyword 19/21: 'nlp engineer'
+[2026-05-14T11:40:08.249+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:40:08.725+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'nlp engineer' (up to 5 pages)
+[2026-05-14T11:40:08.726+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:40:16.812+0000] {wuzzuf_scraper.py:450} INFO -   Found 9 cards on page
+[2026-05-14T11:41:08.746+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 9
+[2026-05-14T11:41:10.748+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:41:14.529+0000] {wuzzuf_scraper.py:450} INFO -   Found 9 cards on page
+[2026-05-14T11:41:58.902+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 9 duplicate(s)
+[2026-05-14T11:41:58.904+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:41:58.905+0000] {wuzzuf_scraper.py:515} INFO - Done: 'nlp engineer' → 9 relevant jobs
+[2026-05-14T11:41:58.906+0000] {wuzzuf_scraper.py:642} INFO - 'nlp engineer': 9 jobs (1 new unique)
+[2026-05-14T11:41:58.935+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_nlp_engineer.json → updated=9 appended=0 total=10
+[2026-05-14T11:42:02.182+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:42:02.183+0000] {wuzzuf_scraper.py:622} INFO - Keyword 20/21: 'business analyst'
+[2026-05-14T11:42:02.183+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:42:02.727+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'business analyst' (up to 5 pages)
+[2026-05-14T11:42:02.728+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:42:12.614+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:43:17.812+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 14
+[2026-05-14T11:43:19.813+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:43:23.291+0000] {wuzzuf_scraper.py:450} INFO -   Found 14 cards on page
+[2026-05-14T11:45:12.910+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 14 duplicate(s)
+[2026-05-14T11:45:12.911+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:45:12.912+0000] {wuzzuf_scraper.py:515} INFO - Done: 'business analyst' → 14 relevant jobs
+[2026-05-14T11:45:12.913+0000] {wuzzuf_scraper.py:642} INFO - 'business analyst': 14 jobs (10 new unique)
+[2026-05-14T11:45:12.945+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_business_analyst.json → updated=12 appended=2 total=16
+[2026-05-14T11:45:16.233+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T11:45:16.240+0000] {wuzzuf_scraper.py:622} INFO - Keyword 21/21: 'product analyst'
+[2026-05-14T11:45:16.242+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T11:45:17.558+0000] {wuzzuf_scraper.py:480} INFO - Scraping: 'product analyst' (up to 5 pages)
+[2026-05-14T11:45:17.559+0000] {wuzzuf_scraper.py:483} INFO -   Page 1/5
+[2026-05-14T11:45:30.892+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:47:19.227+0000] {wuzzuf_scraper.py:510} INFO -   Total so far: 15
+[2026-05-14T11:47:21.230+0000] {wuzzuf_scraper.py:483} INFO -   Page 2/5
+[2026-05-14T11:47:26.151+0000] {wuzzuf_scraper.py:450} INFO -   Found 15 cards on page
+[2026-05-14T11:49:20.353+0000] {wuzzuf_scraper.py:502} WARNING -   Skipped 15 duplicate(s)
+[2026-05-14T11:49:20.355+0000] {wuzzuf_scraper.py:506} INFO -   Entire page was duplicates — pagination exhausted
+[2026-05-14T11:49:20.356+0000] {wuzzuf_scraper.py:515} INFO - Done: 'product analyst' → 15 relevant jobs
+[2026-05-14T11:49:20.358+0000] {wuzzuf_scraper.py:642} INFO - 'product analyst': 15 jobs (3 new unique)
+[2026-05-14T11:49:20.388+0000] {wuzzuf_scraper.py:572} INFO - Saved wuzzuf_product_analyst.json → updated=10 appended=5 total=20
+[2026-05-14T11:49:20.665+0000] {wuzzuf_scraper.py:686} INFO - 
+=======================================================
+[2026-05-14T11:49:20.666+0000] {wuzzuf_scraper.py:687} INFO - SCRAPING COMPLETE
+[2026-05-14T11:49:20.667+0000] {wuzzuf_scraper.py:688} INFO - Total unique relevant jobs: 152
+[2026-05-14T11:49:20.668+0000] {wuzzuf_scraper.py:689} INFO - Combined file: /opt/***/project/data/raw/wuzzuf_combined.json
+[2026-05-14T11:49:20.669+0000] {wuzzuf_scraper.py:690} INFO - =======================================================
+[2026-05-14T11:49:20.708+0000] {logging_mixin.py:188} INFO - ✔ Scraped 152 relevant jobs
+[2026-05-14T11:49:20.709+0000] {python.py:237} INFO - Done. Returned value was: 152
+[2026-05-14T11:49:20.710+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-14T11:49:20.760+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=egypt_jobs_pipeline, task_id=scrape_wuzzuf, run_id=manual__2026-05-14T10:24:15.138833+00:00, execution_date=20260514T102415, start_date=20260514T104746, end_date=20260514T114920
+[2026-05-14T11:49:20.921+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-05-14T11:49:21.176+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T11:49:21.180+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

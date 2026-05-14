@@ -1,0 +1,77 @@
+[2026-05-14T10:22:33.875+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-14T10:22:34.008+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.scrape_wuzzuf manual__2026-05-14T09:58:11.558893+00:00 [queued]>
+[2026-05-14T10:22:34.061+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.scrape_wuzzuf manual__2026-05-14T09:58:11.558893+00:00 [queued]>
+[2026-05-14T10:22:34.069+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 3
+[2026-05-14T10:22:34.150+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): scrape_wuzzuf> on 2026-05-14 09:58:11.558893+00:00
+[2026-05-14T10:22:34.178+0000] {standard_task_runner.py:63} INFO - Started process 170 to run task
+[2026-05-14T10:22:34.204+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'egypt_jobs_pipeline', 'scrape_wuzzuf', 'manual__2026-05-14T09:58:11.558893+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/egypt_jobs_pipeline.py', '--cfg-path', '/tmp/tmp54eno9o5']
+[2026-05-14T10:22:34.220+0000] {standard_task_runner.py:91} INFO - Job 7: Subtask scrape_wuzzuf
+[2026-05-14T10:22:34.743+0000] {task_command.py:426} INFO - Running <TaskInstance: egypt_jobs_pipeline.scrape_wuzzuf manual__2026-05-14T09:58:11.558893+00:00 [running]> on host f29bfa10ec0f
+[2026-05-14T10:22:35.869+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sama' AIRFLOW_CTX_DAG_ID='egypt_jobs_pipeline' AIRFLOW_CTX_TASK_ID='scrape_wuzzuf' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T09:58:11.558893+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T09:58:11.558893+00:00'
+[2026-05-14T10:22:35.872+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-14T10:22:36.072+0000] {wuzzuf_scraper.py:621} INFO - 
+=======================================================
+[2026-05-14T10:22:36.075+0000] {wuzzuf_scraper.py:622} INFO - Keyword 1/21: 'data engineer'
+[2026-05-14T10:22:36.076+0000] {wuzzuf_scraper.py:623} INFO - =======================================================
+[2026-05-14T10:22:36.963+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-14T10:22:36.965+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/egypt_jobs_pipeline.py", line 36, in scrape_task
+    jobs = scrape_all_keywords(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/project/scraper/wuzzuf_scraper.py", line 625, in scrape_all_keywords
+    scraper = WuzzufScraper(
+              ^^^^^^^^^^^^^^
+  File "/opt/airflow/project/scraper/wuzzuf_scraper.py", line 247, in __init__
+    self.browser    = self.playwright.chromium.launch(headless=True)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/sync_api/_generated.py", line 13991, in launch
+    self._sync(
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_browser_type.py", line 94, in launch
+    Browser, from_channel(await self._channel.send("launch", params))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 514, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: BrowserType.launch: Executable doesn't exist at /home/***/.cache/ms-playwright/chromium-1117/chrome-linux/chrome
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+[2026-05-14T10:22:36.992+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=egypt_jobs_pipeline, task_id=scrape_wuzzuf, run_id=manual__2026-05-14T09:58:11.558893+00:00, execution_date=20260514T095811, start_date=20260514T102234, end_date=20260514T102236
+[2026-05-14T10:22:37.028+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 7 for task scrape_wuzzuf (BrowserType.launch: Executable doesn't exist at /home/***/.cache/ms-playwright/chromium-1117/chrome-linux/chrome
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝; 170)
+[2026-05-14T10:22:37.066+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-05-14T10:22:37.129+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T10:22:37.143+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

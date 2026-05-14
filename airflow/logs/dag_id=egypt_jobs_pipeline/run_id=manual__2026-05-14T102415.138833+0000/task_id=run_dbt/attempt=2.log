@@ -1,0 +1,50 @@
+[2026-05-14T12:29:54.827+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-14T12:29:54.861+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.run_dbt manual__2026-05-14T10:24:15.138833+00:00 [queued]>
+[2026-05-14T12:29:54.870+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: egypt_jobs_pipeline.run_dbt manual__2026-05-14T10:24:15.138833+00:00 [queued]>
+[2026-05-14T12:29:54.871+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 3
+[2026-05-14T12:29:54.883+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): run_dbt> on 2026-05-14 10:24:15.138833+00:00
+[2026-05-14T12:29:54.890+0000] {standard_task_runner.py:63} INFO - Started process 289 to run task
+[2026-05-14T12:29:54.893+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'egypt_jobs_pipeline', 'run_dbt', 'manual__2026-05-14T10:24:15.138833+00:00', '--job-id', '26', '--raw', '--subdir', 'DAGS_FOLDER/egypt_jobs_pipeline.py', '--cfg-path', '/tmp/tmpzb7z05h_']
+[2026-05-14T12:29:54.896+0000] {standard_task_runner.py:91} INFO - Job 26: Subtask run_dbt
+[2026-05-14T12:29:54.950+0000] {task_command.py:426} INFO - Running <TaskInstance: egypt_jobs_pipeline.run_dbt manual__2026-05-14T10:24:15.138833+00:00 [running]> on host f6632be07a8e
+[2026-05-14T12:29:55.039+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='sama' AIRFLOW_CTX_DAG_ID='egypt_jobs_pipeline' AIRFLOW_CTX_TASK_ID='run_dbt' AIRFLOW_CTX_EXECUTION_DATE='2026-05-14T10:24:15.138833+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-14T10:24:15.138833+00:00'
+[2026-05-14T12:29:55.041+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-14T12:29:55.057+0000] {logging_mixin.py:188} INFO - Running dbt models...
+[2026-05-14T12:30:06.607+0000] {logging_mixin.py:188} INFO - 12:29:58  Running with dbt=1.8.0
+12:30:01  Registered adapter: snowflake=1.8.0
+12:30:02  Unable to do partial parsing because of a version mismatch
+12:30:05  [WARNING]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+12:30:05  Encountered an error:
+Compilation Error in test accepted_values_dim_job__junior_mid_senior_executive___experience_level (models/marts/schema.yml)
+  macro 'dbt_macro__test_accepted_values' takes no keyword argument 'arguments'
+[2026-05-14T12:30:06.608+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-14T12:30:06.609+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/egypt_jobs_pipeline.py", line 123, in dbt_task
+    raise RuntimeError(f"dbt run failed:\n{result.stderr}")
+RuntimeError: dbt run failed:
+
+[2026-05-14T12:30:06.624+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=egypt_jobs_pipeline, task_id=run_dbt, run_id=manual__2026-05-14T10:24:15.138833+00:00, execution_date=20260514T102415, start_date=20260514T122954, end_date=20260514T123006
+[2026-05-14T12:30:06.638+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 26 for task run_dbt (dbt run failed:
+; 289)
+[2026-05-14T12:30:06.659+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-05-14T12:30:06.674+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-14T12:30:06.677+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
