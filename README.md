@@ -164,7 +164,19 @@ dbt debug
 # 6. Run all models
 dbt run
 ```
+## 📈 Statistical Analysis
 
+To validate workforce trends beyond visual inspection, three hypothesis tests were run in Python (Pandas, SciPy) against the Snowflake data marts:
+
+| Test | Question | Result |
+|------|----------|--------|
+| ANOVA | Does required skill count differ significantly across experience levels (junior/mid/senior/executive)? | Not significant (F=0.315, p=0.81) — skill count is flat across seniority levels |
+| Pearson Correlation | Do higher-volume job categories also require more skills per posting? | Moderate positive correlation (r=0.577) |
+| Chi-Square Test | Are specific skills associated with specific job categories rather than randomly distributed? | Highly significant (χ²=1062.17, p<0.001, df=323) |
+
+**Key takeaway:** Egyptian tech job postings don't meaningfully scale skill *quantity* with seniority level — junior and senior roles list a similar number of required skills on average. However, higher-demand job categories (e.g., Software Engineer) do tend to require more skills overall, and skill distribution is far from random across categories, confirming expected domain clustering (e.g., SQL concentrated in data roles).
+
+Analysis script: `stats_analysis/stats_test.py`
 ---
 
 ## 📈 Power BI Dashboard — 5 Pages
