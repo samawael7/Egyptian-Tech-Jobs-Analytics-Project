@@ -1,13 +1,3 @@
-"""
-
-HOW AIRFLOW USES THIS:
-    from pipeline.clean import run_cleaning_pipeline
-    df = run_cleaning_pipeline(
-        input_path=Path("data/raw/wuzzuf_combined.json"),
-        output_path=Path("data/processed/jobs_cleaned.parquet")
-    )
-"""
-
 import json
 import logging
 import re
@@ -17,11 +7,6 @@ from pathlib import Path
 
 import pandas as pd
 
-# ── Tech Skills Allowlist ─────────────────────────────────────────────────────
-# WHY AN ALLOWLIST NOT JUST A DENYLIST:
-#   A denylist needs constant maintenance as new noise appears.
-#   An allowlist defines what we WANT — anything not in it gets dropped.
-#   We use a "contains" check (not exact match) so "Apache Spark" matches "spark".
 
 TECH_SKILLS_VOCAB = {
     # Languages
@@ -70,10 +55,6 @@ TECH_SKILLS_VOCAB = {
     "sap", "odoo", "dynamics", "erp", "crm", "salesforce", "servicenow",
 }
 
-# ── Logging ───────────────────────────────────────────────────────────────────
-# WHY LOGGING NOT PRINT:
-#   Airflow captures logging output and shows it in its UI per task.
-#   print() statements don't show up properly in Airflow logs.
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
@@ -82,20 +63,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# STEP 1 — LOAD
-# ══════════════════════════════════════════════════════════════════════════════
 
 def load_raw_json(input_path: Path) -> pd.DataFrame:
-    """
-    WHAT: Reads wuzzuf_combined.json → flat pandas DataFrame.
-
-    WHY FLATTEN:
-        JSON has nested structure: {metadata: {}, jobs: [{...}, {...}]}
-        pandas needs a flat list of records.
-        We extract jobs[] and normalize field names to match
-        the column names we used in the original cleaning notebook.
-    """
     logger.info(f"Loading raw JSON from {input_path}")
 
     with open(input_path, encoding="utf-8") as f:
@@ -104,12 +73,6 @@ def load_raw_json(input_path: Path) -> pd.DataFrame:
     jobs = data.get("jobs", [])
     if not jobs:
         raise ValueError(f"No jobs found in {input_path}")
-
-    # Normalize field names from scraper schema → cleaning schema
-    # WHY RENAME:
-    #   Scraper uses: title, company, location, experience, url
-    #   Cleaning notebook used: job_title, company_name, city, experience_raw, job_url
-    #   We map scraper names → notebook names so all downstream functions work
     normalized = []
     for job in jobs:
         normalized.append({

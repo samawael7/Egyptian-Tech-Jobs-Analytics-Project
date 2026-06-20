@@ -1,29 +1,3 @@
-"""
-scraper/wuzzuf_scraper.py
-─────────────────────────
-Scrapes job listings from Wuzzuf.net across multiple keywords.
-Phase 1 of the Egyptian Job Market Analytics Pipeline.
-
-WHAT THIS FILE DOES:
-    1. Opens a headless browser using Playwright
-    2. Searches Wuzzuf for each keyword in SEARCH_KEYWORDS
-    3. Extracts job data from each result card
-    4. Filters irrelevant jobs using TECH_TITLE_KEYWORDS
-    5. Deduplicates across keywords (same job can appear in multiple searches)
-    6. Saves results as JSON (one file per keyword + one combined file)
-    7. Returns all jobs as a list for the pipeline to use
-
-WHY PLAYWRIGHT NOT SELENIUM:
-    Wuzzuf uses CSS-in-JS (Emotion) which generates hashed class names
-    (e.g. css-1gatmva) that change on every frontend deployment.
-    Playwright uses structural/semantic selectors that survive these changes.
-    Selenium used hardcoded class names that broke constantly.
-
-HOW AIRFLOW USES THIS:
-    from scraper.wuzzuf_scraper import scrape_all_keywords
-    jobs = scrape_all_keywords(output_dir=Path("data/raw"), max_pages=5)
-"""
-
 import json
 import logging
 import time
@@ -33,7 +7,6 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-# ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
@@ -41,66 +14,42 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Constants ─────────────────────────────────────────────────────────────────
 BASE_URL      = "https://wuzzuf.net/search/jobs/"
-DELAY_SECONDS = 2          # polite delay between pages to avoid rate limiting
-REQUEST_TIMEOUT = 15       # seconds before giving up on a page load
+DELAY_SECONDS = 2         
+REQUEST_TIMEOUT = 15      
 
-# ── Search Keywords ───────────────────────────────────────────────────────────
-# WHY THIS LIST:
-#   These are the exact roles we want to track in Egypt's tech job market.
-#   Each keyword becomes a separate Wuzzuf search → results are combined later.
-#   We kept only genuinely tech/data roles — removed broad terms like
-#   "financial analyst" and "operations analyst" that pulled irrelevant jobs.
+
 SEARCH_KEYWORDS = [
-    # Core data roles
     "data engineer",
     "data analyst",
     "data scientist",
     "analytics engineer",
 
-    # BI & Visualization
     "business intelligence",
     "power bi developer",
     "tableau developer",
     "bi developer",
 
-    # SQL & Python
     "sql developer",
     "python developer",
 
-    # ETL & Pipelines
     "etl developer",
     "data pipeline",
 
-    # Big Data & Cloud
     "big data engineer",
     "data warehouse engineer",
     "cloud data engineer",
     "snowflake developer",
 
-    # AI & ML
     "machine learning engineer",
     "ai engineer",
     "nlp engineer",
 
-    # Business & Product
     "business analyst",
     "product analyst",
 ]
 
-# ── Relevance Filter ──────────────────────────────────────────────────────────
-# WHY THIS EXISTS:
-#   Wuzzuf's search is not strict — searching "data analyst" returns HVAC
-#   engineers, accountants, and production managers because Wuzzuf does
-#   partial keyword matching across the full job description.
-#   We check the job TITLE (not description) against this list.
-#   If the title contains NONE of these keywords → job is irrelevant → drop it.
-#
-# HOW IT WORKS:
-#   is_relevant_job("Senior Data Engineer") → True  (contains "data")
-#   is_relevant_job("HVAC Design Engineer") → False (no tech keywords)
-#   is_relevant_job("Laravel Developer")    → True  (contains "developer")
+
 TECH_TITLE_KEYWORDS = [
     # Data
     "data", "analytics", "analytical", "analyst",
@@ -130,12 +79,7 @@ TECH_TITLE_KEYWORDS = [
     "quality assurance", "qa ", " qa", "automation",
 ]
 
-# ── Selector Constants ────────────────────────────────────────────────────────
-# WHY THESE SELECTORS:
-#   Wuzzuf's hashed CSS classes change on every deployment.
-#   We use structural selectors (href patterns, element relationships)
-#   that describe WHAT an element does, not WHAT class it has.
-#   This makes the scraper survive Wuzzuf frontend updates.
+
 
 KNOWN_WORK_MODES = {"on-site", "hybrid", "remote"}
 KNOWN_JOB_TYPES = {
@@ -177,29 +121,12 @@ FIELD_SELECTORS = {
 }
 
 
-# ── Relevance Check ───────────────────────────────────────────────────────────
 def is_relevant_job(title: str) -> bool:
-    """
-    Returns True if the job title contains at least one tech keyword.
-
-    WHY WE CHECK TITLE NOT DESCRIPTION:
-        Job descriptions are long and contain many unrelated words.
-        "Data Analyst" in a job description doesn't mean the role IS data.
-        The title is the most reliable signal of what the job actually is.
-
-    EXAMPLES:
-        is_relevant_job("Senior Data Engineer")     → True
-        is_relevant_job("HVAC Design Engineer")     → False
-        is_relevant_job("Traffic Engineer")         → False
-        is_relevant_job("Machine Learning Intern")  → True
-    """
     title_lower = title.lower()
     return any(kw in title_lower for kw in TECH_TITLE_KEYWORDS)
 
 
-# ── Helper Functions ──────────────────────────────────────────────────────────
 def _first(card, selectors):
-    """Try selectors in order, return the first matching element."""
     if isinstance(selectors, str):
         selectors = [selectors]
     for sel in selectors:
@@ -210,7 +137,6 @@ def _first(card, selectors):
 
 
 def _all(card, selectors):
-    """Try selectors in order, return all matches for the first that hits."""
     if isinstance(selectors, str):
         selectors = [selectors]
     for sel in selectors:
@@ -220,29 +146,14 @@ def _all(card, selectors):
     return []
 
 
-# ── Scraper Class ─────────────────────────────────────────────────────────────
 class WuzzufScraper:
-    """
-    Scrapes job listings from Wuzzuf.net for a single search keyword.
-
-    WHY A CLASS:
-        Each keyword needs its own browser session, job list, and state.
-        A class keeps all of this organized and makes cleanup reliable.
-
-    HOW AIRFLOW USES IT:
-        The class is called by scrape_all_keywords() below.
-        Airflow never calls this class directly.
-    """
+    
 
     def __init__(self, keyword: str, max_pages: int, output_dir: Path):
         self.keyword    = keyword
         self.max_pages  = max_pages
         self.output_dir = output_dir
         self.jobs: list[dict] = []
-
-        # Start Playwright browser
-        # headless=True means no visible browser window — runs in background
-        # This is essential for Airflow which runs in Docker with no display
         self.playwright = sync_playwright().start()
         self.browser    = self.playwright.chromium.launch(headless=True)
         self.context    = self.browser.new_context(
@@ -255,7 +166,6 @@ class WuzzufScraper:
         self.page = self.context.new_page()
 
     def _get_page(self, page_num: int) -> bool:
-        """Navigate to a search results page. Returns False if it fails."""
         url = f"{BASE_URL}?q={self.keyword}&a%5Bpage%5D={page_num}"
         try:
             self.page.goto(url, timeout=REQUEST_TIMEOUT * 1000)
